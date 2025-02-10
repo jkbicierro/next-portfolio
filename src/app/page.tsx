@@ -1,101 +1,148 @@
-import Image from "next/image";
+//import Image from "next/image";
+
+import { Input } from "@/components/ui/input";
+import { ModeToggle } from "./client";
+import { CircleChevronDown, Download, Github, Send } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import Aurora from "@/components/reactbits/aurora";
+import { WordRotate } from "@/components/magicui/word-rotate";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    return (
+        <main className="mx-5 2xl:mx-[220px]">
+            {/* For fixed navbar */}
+            <NavBar />
+            <div className="h-[60px]"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <LatestResearch />
+
+            <Project />
+
+            <DownloadCV />
+        </main>
+    );
+}
+
+function DownloadCV() {
+    return (
+        <div className="py-[150px] flex flex-col gap-[50px]">
+            <div className="rounded bg-gradient-to-r from-violet-200 to-pink-200 w-full h-[350px] flex flex-col items-center justify-center gap-5">
+                <h2>There you go</h2>
+                <div className="flex gap-2">
+                    <Button>
+                        <Send />
+                        John Bicierro
+                    </Button>
+                    <Button>
+                        <Download />
+                        Download CV
+                    </Button>
+                </div>
+            </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    );
+}
+
+function Project() {
+    return (
+        <div className="py-[150px] flex flex-col gap-[50px]">
+            <h2>Recent Project</h2>
+
+            <div className="flex flex-col lg:flex-row gap-5">
+                <div className="flex flex-col flex-grow gap-10">
+                    <ProjectCard />
+                    <ProjectCard />
+                </div>
+                <div className="flex flex-col flex-grow gap-10">
+                    <ProjectCard />
+                    <ProjectCard />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ProjectCard() {
+    return (
+        <div className="flex flex-row items-start flex-grow gap-8">
+            <div className="w-[200px] h-[200px] bg-gradient-to-r from-blue-200 to-cyan-200 rounded"></div>
+
+            <div className="flex flex-col items-start gap-1 h-full justify-center">
+                <h3>Gupiro</h3>
+                <p>A reservation app that can handles services</p>
+                <div className="flex gap-2">
+                    <Badge name="Next.js" />
+                    <Badge name="Javascript/Typescript" />
+                    <Badge name="OAuth" />
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function LatestResearch() {
+    return (
+        <div className="py-[150px] flex flex-col gap-[50px]">
+            <div className="flex justify-between items-center">
+                <h2>Latest Research</h2>
+                <span className="text-sm">View All</span>
+            </div>
+
+            <div className="flex flex-col lg:flex-row gap-5">
+                <LatestResearchCard />
+                <LatestResearchCard />
+                <LatestResearchCard />
+            </div>
+        </div>
+    );
+}
+
+function LatestResearchCard() {
+    return (
+        <div className="flex flex-col items-start flex-grow gap-8">
+            <div className="w-full rounded h-[350px] bg-gradient-to-r from-blue-200 to-cyan-200"></div>
+
+            <div className="flex flex-col gap-1">
+                <h3>BillAng</h3>
+                <p>A expense tracker gamification</p>
+                <span className="text-sm">Research</span>
+            </div>
+        </div>
+    );
+}
+
+function NavBar() {
+    return (
+        <nav className="mx-5 2xl:mx-[220px] z-[20] fixed left-0 right-0 bg-white dark:bg-zinc-950 h-[60px] flex items-center justify-between">
+            <div className="flex items-center gap-2">
+                <Avatar className="w-[24px] h-[24px]">
+                    <AvatarImage src="https://github.com/jkbicierro.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <span className="text-sm">@jkbicierro</span>
+            </div>
+            <ul className="flex gap-10 text-sm text-zinc-950 dark:text-zinc-50">
+                <li>Research</li>
+                <li>Projects</li>
+                <li>Blogs</li>
+            </ul>
+            <div className="flex items-center gap-3">
+                <ModeToggle />
+            </div>
+        </nav>
+    );
+}
+
+interface Badge {
+    name: string;
+}
+
+function Badge(props: Badge) {
+    return (
+        <div className="bg-green-200 text-green-800 py-1 px-3 text-xs rounded-full">
+            {props.name}
+        </div>
+    );
 }
