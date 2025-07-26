@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, useScroll } from "motion/react";
+import { ModeToggle } from "../buttons/mode-toggle";
 
 const navigation = [
     { name: "Home", href: "/", icon: <Home size={16} /> },
@@ -17,6 +18,7 @@ const navigation = [
 export function NavBar() {
     const pathname = usePathname();
     const { scrollYProgress } = useScroll();
+
     return (
         <>
             <div className="hidden lg:block">
@@ -44,7 +46,7 @@ export function NavBar() {
                                             className={`${
                                                 isActive
                                                     ? "text-blue-500 border-b-2 border-blue-500"
-                                                    : "text-zinc-400"
+                                                    : "text-slate-500"
                                             }`}
                                         >
                                             {item.name}
@@ -53,10 +55,13 @@ export function NavBar() {
                                 );
                             })}
                         </ul>
-                        <Button>
-                            <Sparkles />
-                            Unlock Resources
-                        </Button>
+                        <div className="flex gap-2">
+                            <Button>
+                                <Sparkles />
+                                Unlock Resources
+                            </Button>
+                            <ModeToggle />
+                        </div>
                     </div>
                 </nav>
                 <div className="h-[60px]"></div>
@@ -74,6 +79,7 @@ export function NavBar() {
                     className="bg-blue-500 z-50"
                 />
             </div>
+
             <div className="block lg:hidden">
                 <nav className="bg-background h-[50px] fixed bottom-0 border-t w-full flex items-center justify-center">
                     <ul className="w-full flex justify-around">

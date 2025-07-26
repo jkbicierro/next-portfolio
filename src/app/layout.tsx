@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import { DM_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/block/navbar";
 import Copyright from "@/components/block/copyright";
+import Footer from "@/components/block/footer";
 
 const dm_font = DM_Sans({
     variable: "--font-dm",
+    subsets: ["latin"],
 });
 
 const pacifico_font = Pacifico({
     weight: "400",
     variable: "--font-pacifico",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -36,6 +39,7 @@ export default function RootLayout({
                     <NavBar />
                     {children}
                     <Copyright />
+                    <Footer />
                 </ThemeProvider>
             </body>
         </html>
