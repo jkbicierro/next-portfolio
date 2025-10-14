@@ -10,9 +10,9 @@ import { ModeToggle } from "../buttons/mode-toggle";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home size={16} /> },
-  { name: "Research", href: "/research", icon: <FolderSearch size={16} /> },
-  { name: "About", href: "/about", icon: <CircleUser size={16} /> },
-  { name: "Contact", href: "/contact", icon: <AtSign size={16} /> },
+  // { name: "Research", href: "/research", icon: <FolderSearch size={16} /> },
+  // { name: "About", href: "/about", icon: <CircleUser size={16} /> },
+  // { name: "Contact", href: "/contact", icon: <AtSign size={16} /> },
 ];
 
 export function NavBar() {
@@ -56,10 +56,10 @@ export function NavBar() {
               })}
             </ul>
             <div className="flex gap-2">
-              <Button>
+              {/* <Button>
                 <Sparkles />
                 Unlock Resources
-              </Button>
+              </Button> */}
               <ModeToggle />
             </div>
           </div>
