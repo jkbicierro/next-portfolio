@@ -8,82 +8,134 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Pointer } from "@/components/ui/pointer";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 export default function Page() {
   return (
     <main className="px-[20px]">
       <Hero />
-
       <section>
         <div className="flex flex-col items-center justify-center gap-5 ">
-          <small className="uppercase text-slate-400">
+          <small className="uppercase text-slate-600 dark:text-slate-400">
             People and teams I&apos;ve worked with
           </small>
-          <div className="flex flex-wrap justify-center gap-10">
-            <div className="flex flex-col items-center gap-1 cursor-pointer">
-              <Image
-                src="/assets/adnu.png"
-                alt="Edge Roleplay Logo"
-                width={700}
-                height={700}
-                className="h-[50px] w-auto"
-              />
+          <div className="grid grid-cols-4 lg:grid-cols-5 gap-10">
+            <Image
+              src="/assets/adnu.png"
+              alt="Edge Roleplay Logo"
+              width={700}
+              height={700}
+              className="h-[40px] w-[40px] object-contain"
+            />
 
-              <small className="text-slate-400">4.8</small>
-            </div>
-            <div className="flex flex-col items-center gap-1 cursor-pointer">
-              <Image
-                src="/assets/caceres.png"
-                alt="Edge Roleplay Logo"
-                width={700}
-                height={700}
-                className="h-[50px] w-auto"
-              />
-              <small className="text-slate-400">5.0</small>
-            </div>
-            <div className="flex flex-col items-center gap-1 cursor-pointer">
-              <Image
-                src="/assets/biscast.png"
-                alt="Edge Roleplay Logo"
-                width={700}
-                height={700}
-                className="h-[50px] w-auto"
-              />
-              <small className="text-slate-400">4.7</small>
-            </div>
-            <div className="flex flex-col items-center gap-1 cursor-pointer">
-              <Image
-                src="/assets/codekada.png"
-                alt="Edge Roleplay Logo"
-                width={700}
-                height={700}
-                className="h-[50px] w-auto"
-              />
-              <small className="text-slate-400">5.0</small>
-            </div>
-            <div className="flex flex-col items-center gap-1 cursor-pointer">
-              <Image
-                src="/assets/csguild.png"
-                alt="Edge Roleplay Logo"
-                width={700}
-                height={700}
-                className="h-[50px] w-auto"
-              />
-              <small className="text-slate-400">4.8</small>
-            </div>
+            <Image
+              src="/assets/caceres.png"
+              alt="Edge Roleplay Logo"
+              width={700}
+              height={700}
+              className="h-[40px] w-[40px] object-contain"
+            />
+            <Image
+              src="/assets/biscast.png"
+              alt="Edge Roleplay Logo"
+              width={700}
+              height={700}
+              className="h-[40px] w-[40px] object-contain"
+            />
+            <Image
+              src="/assets/codekada.png"
+              alt="Edge Roleplay Logo"
+              width={700}
+              height={700}
+              className="h-[40px] w-[40px] object-contain"
+            />
+            <Image
+              src="/assets/csguild.png"
+              alt="Edge Roleplay Logo"
+              width={700}
+              height={700}
+              className="h-[40px] w-[40px] object-contain"
+            />
+
+            {/* <div className="border-2 border-dotted rounded-full h-[40px] w-[40px] flex items-center justify-center cursor-pointer">
+              <Plus size={16} className="text-slate-600 dark:text-slate-400" />
+            </div> */}
           </div>
         </div>
       </section>
 
       <About />
       <Process />
-
       <Projects />
 
-      <section className="py-[200px]">
-        <div className="flex flex-col items-center gap-5">
-          <h1>let&apos;s build something that works</h1>
-          <Input placeholder="Enter your email" className="w-[350px]" />
+      {/* <section className="py-[200px] flex items-center justify-center">
+        <h1>
+          what people{" "}
+          <span className="inline-block transition-all hover:rotate-[5deg] shadow-2xl shadow-blue-500 text-white bg-blue-500 border border-blue-500 px-2">
+            say
+          </span>
+        </h1>
+      </section> */}
+
+      <section className="py-[200px] flex items-center justify-center">
+        <div className="flex items-center justify-center">
+          <div className="flex flex-col items-center gap-20">
+            <h1 className="text-center">
+              let&apos;s build something that{" "}
+              <span className="font-pacifico tracking-wider text-blue-500">
+                works
+              </span>
+            </h1>
+
+            <div className="w-full max-w-[600px] space-y-5">
+              <div>
+                <Label htmlFor="email">
+                  Email <span className="text-red-700">*</span>
+                </Label>
+                <Input
+                  type="email"
+                  id="email"
+                  placeholder="jkbicierro@gmail.com"
+                  className="mt-2"
+                />
+              </div>
+              <div className="flex gap-5">
+                <div className="w-full">
+                  <Label htmlFor="name">
+                    Name <span className="text-red-700">*</span>
+                  </Label>
+                  <Input
+                    type="text"
+                    id="name"
+                    placeholder="John Bicierro"
+                    className="mt-2"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <Label htmlFor="company">Company</Label>
+                  <Input
+                    type="text"
+                    id="company"
+                    placeholder="codekada"
+                    className="mt-2"
+                  />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="message">
+                  Project Description <span className="text-red-700">*</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  placeholder="A web dashboard for real-time analytics and reporting, designed to help teams make data-driven decisions faster."
+                  className="mt-2 min-h-[100px] resize-none"
+                />
+              </div>
+              <Button className="mt-5 w-full">Get in Touch</Button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -92,7 +144,8 @@ export default function Page() {
 
 const projectCards = [
   {
-    title: "SHINRI: Smart Health Information & Navigated Records Integration",
+    small: "SHINRI",
+    title: "Smart Health Information & Navigated Records Integration",
     year: "2025",
     description:
       "Built a real-time dashboard for tracking product movement and stock levels.",
@@ -105,7 +158,8 @@ const projectCards = [
     alt: "Ateneo de Naga University Logo",
   },
   {
-    title: "Edge: User Control Panel & Payment Gateway",
+    small: "Edge",
+    title: "User Control Panel & Payment Gateway",
     year: "2024",
     description:
       "A circulation of the game server economy through a web platform.",
@@ -120,7 +174,8 @@ const projectCards = [
     alt: "Edge Roleplay Logo",
   },
   {
-    title: "Biomemes: Image Listing & Quiz System",
+    small: "Biomemes",
+    title: "Image Listing & Quiz System",
     year: "2025",
     description: "Not set",
     badges: [
@@ -128,11 +183,12 @@ const projectCards = [
       { label: "Framework: Next.js", variant: "secondary" },
       { label: "Database: PostgreSQL", variant: "secondary" },
     ],
-    image: "/assets/edgerp.png",
-    alt: "Edge Roleplay Logo",
+    image: "/assets/projects/biomemes.png",
+    alt: "Biomemes Logo",
   },
   {
-    title: "NYD: Information Portal & Announcement Hub",
+    small: "National Youth Day",
+    title: "Information Portal & Announcement Hub",
     year: "2025",
     description: "Not set",
     badges: [
@@ -140,11 +196,12 @@ const projectCards = [
       { label: "Framework: Next.js", variant: "secondary" },
       { label: "Database: PostgreSQL", variant: "secondary" },
     ],
-    image: "/assets/edgerp.png",
-    alt: "Edge Roleplay Logo",
+    image: "/assets/projects/nyd.png",
+    alt: "National Youth Day Logo",
   },
   {
-    title: "Auro: Ticketing & External Services Integration",
+    small: "Auro",
+    title: "Ticketing & External Services Integration",
     year: "2025",
     description:
       "A ticketing system frontend and backend API designed to seamlessly fetch, manage, and integrate with external systems for efficient ticket handling.",
@@ -154,11 +211,12 @@ const projectCards = [
       { label: "Framework: Express.js", variant: "secondary" },
       { label: "Database: PostgreSQL", variant: "secondary" },
     ],
-    image: "/assets/edgerp.png",
-    alt: "Edge Roleplay Logo",
+    image: "/assets/projects/auro.png",
+    alt: "Auro Logo",
   },
   {
-    title: "Billang: Mobile Application Productivity Tool",
+    small: "Billang",
+    title: "Mobile Application Productivity Tool",
     year: "2025",
     description:
       "An expense and bills management tracker with a touch of gamification.",
@@ -167,11 +225,12 @@ const projectCards = [
       { label: "Framework: Expo", variant: "secondary" },
       { label: "Database: SQLite", variant: "secondary" },
     ],
-    image: "/assets/edgerp.png",
+    image: "/assets/projects/billang.png",
     alt: "Edge Roleplay Logo",
   },
   {
-    title: "Gupiro: Listing & Appointment System",
+    small: "Gupiro",
+    title: "Listing & Appointment System",
     year: "2024",
     description:
       "A service business shop reservation system designed to streamline appointment bookings for businesses and their customers was built as a software service.",
@@ -180,11 +239,12 @@ const projectCards = [
       { label: "Framework: Next.js", variant: "secondary" },
       { label: "Database: PostgreSQL", variant: "secondary" },
     ],
-    image: "/assets/edgerp.png",
-    alt: "Edge Roleplay Logo",
+    image: "/assets/projects/gupiro.png",
+    alt: "Gupiro Logo",
   },
   {
-    title: "Grexn: Product Research",
+    small: "Grexn",
+    title: "Product Research",
     year: "2024",
     description:
       "A service business shop reservation system designed to streamline appointment bookings for businesses and their customers was built as a software service.",
@@ -201,10 +261,16 @@ const projectCards = [
 function Projects() {
   return (
     <section className="py-[200px] flex flex-col items-center">
-      <h1 className="text-center">a few things i&apos;ve worked on</h1>
+      <h1 className="text-center">
+        a few things i&apos;ve{" "}
+        <span className="font-pacifico tracking-wider text-blue-500">
+          worked
+        </span>{" "}
+        on
+      </h1>
 
       {/* Cards */}
-      <div className="mt-10">
+      <div className="mt-20">
         {[...projectCards]
           .sort((a, b) => Number(b.year) - Number(a.year))
           .map((card, idx) => (
@@ -218,19 +284,24 @@ function Projects() {
                   alt={card.alt}
                   width={600}
                   height={600}
-                  className="h-[40px] w-[40px]"
+                  className="h-[40px] w-[40px] object-contain"
                 />
               ) : (
-                <div className="h-[40px] w-[40px] bg-blue-500 rounded-sm" />
+                <div className="h-[40px] w-[40px] bg-zinc-800" />
               )}
 
               <div className="w-full space-y-2">
+                <small className="text-slate-600 dark:text-slate-400 uppercase">
+                  {card.small}
+                </small>
                 <div className="flex justify-between items-center gap-5">
                   <h5>{card.title}</h5>
-                  <span className="text-slate-500">{card.year}</span>
+                  <span className="text-slate-600 dark:text-slate-400">
+                    {card.year}
+                  </span>
                 </div>
 
-                <p className="max-w-[700px] text-slate-500">
+                <p className="max-w-[700px] text-slate-600 dark:text-slate-400">
                   {card.description}
                 </p>
 
@@ -253,9 +324,11 @@ function Projects() {
 function Process() {
   return (
     <section className="py-[200px] flex flex-col items-center">
+      <Pointer className="fill-blue-500 hidden lg:block" />
+
       <h1 className="text-center">
         how i turn business needs into{" "}
-        <span className="inline-block cursor-pointer transition-all hover:rotate-[-5deg] shadow-2xl shadow-blue-500 text-white bg-blue-500 border border-blue-500 px-2">
+        <span className="inline-block transition-all hover:rotate-[-5deg] shadow-2xl shadow-blue-500 text-white bg-blue-500 border border-blue-500 px-2">
           scalable
         </span>{" "}
         software
@@ -264,9 +337,8 @@ function Process() {
       <div className="mt-20 flex flex-col items-center gap-5">
         <Separator
           orientation="vertical"
-          className="w-[2px] h-[450px] bg-gradient-to-b from-background to-blue-500"
+          className="w-[2px] h-[300px] bg-gradient-to-b from-background to-blue-500"
         />
-
         {/* First Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -278,22 +350,17 @@ function Process() {
 
           <div className="text-center p-5 space-y-5">
             <h2>
-              understand the{" "}
-              <span className="text-blue-500 font-pacifico font-normal tracking-wider">
-                problem
-              </span>
+              understand the <span className="text-blue-500">problem</span>
             </h2>
-            <p className="text-slate-500">
+            <p className="text-slate-600 dark:text-slate-400">
               I start with the &quot;why&quot;, not just the feature list.
             </p>
           </div>
         </div>
-
         <Separator
           orientation="vertical"
-          className="w-[2px] h-[450px] bg-blue-500"
+          className="w-[2px] h-[300px] bg-blue-500"
         />
-
         {/* Second Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -305,23 +372,18 @@ function Process() {
 
           <div className="p-5 space-y-5 text-center">
             <h2>
-              plan for{" "}
-              <span className="text-blue-500 font-pacifico font-normal tracking-wider">
-                scale
-              </span>
+              plan for <span className="text-blue-500">scale</span>
             </h2>
-            <p className="text-slate-500">
+            <p className="text-slate-600 dark:text-slate-400">
               Architecture first — clean data flow, right tools, long-term
               thinking.
             </p>
           </div>
         </div>
-
         <Separator
           orientation="vertical"
-          className="w-[2px] h-[450px] bg-blue-500"
+          className="w-[2px] h-[300px] bg-blue-500"
         />
-
         {/* Third Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -332,22 +394,17 @@ function Process() {
           </div>
           <div className="p-5 space-y-5 text-center">
             <h2>
-              design with{" "}
-              <span className="text-blue-500 font-pacifico font-normal tracking-wider">
-                intent
-              </span>
+              design with <span className="text-blue-500">intent</span>
             </h2>
-            <p className="text-slate-500">
+            <p className="text-slate-600 dark:text-slate-400">
               Interfaces that reduce friction and enhance flow.
             </p>
           </div>
         </div>
-
         <Separator
           orientation="vertical"
-          className="w-[2px] h-[450px] bg-blue-500"
+          className="w-[2px] h-[300px] bg-blue-500"
         />
-
         {/* Fourth Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -359,22 +416,17 @@ function Process() {
 
           <div className="p-5 space-y-5 text-center">
             <h2>
-              build{" "}
-              <span className="text-blue-500 font-pacifico font-normal tracking-wider">
-                precisely
-              </span>
+              build <span className="text-blue-500">precisely</span>
             </h2>
-            <p className="text-slate-500">
+            <p className="text-slate-600 dark:text-slate-400">
               Modular code, performance-focused, written to last.
             </p>
           </div>
         </div>
-
         <Separator
           orientation="vertical"
-          className="w-[2px] h-[450px] bg-blue-500"
+          className="w-[2px] h-[300px] bg-blue-500"
         />
-
         {/* Last Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -386,12 +438,9 @@ function Process() {
 
           <div className="p-5 space-y-5 text-center">
             <h2>
-              deliver &{" "}
-              <span className=" text-blue-500 font-pacifico font-normal tracking-wider">
-                improve
-              </span>
+              deliver & <span className=" text-blue-500">improve</span>
             </h2>
-            <p className="text-slate-500">
+            <p className="text-slate-600 dark:text-slate-400">
               I ship fast, learn from feedback, and optimize continuously.
             </p>
             <Button variant={"link"}>Learn More</Button>
@@ -418,12 +467,12 @@ function Hero() {
             <span>engineered to</span>
 
             <span className="shadow-2xl shadow-blue-500 cursor-pointer transition-all hover:rotate-[5deg] text-white bg-blue-500 border border-blue-500 px-2">
-              scale.
+              scale
             </span>
           </div>
         </h1>
-        <p className="text-slate-400">
-          Built to improve how businesses operate — not just how they look.
+        <p className="text-slate-600 dark:text-slate-400">
+          Built to improve how businesses operate, not just how they look
         </p>
         <div className="flex gap-4">
           <Button>View Case Studies</Button>
@@ -440,9 +489,9 @@ function About() {
   const [selected, setSelected] = useState<string>("systems");
 
   const meanings = {
-    systems: "Seeing the bigger picture in every decision.",
-    business: "Every design choice impacts growth and outcomes.",
-    alignment: "Connecting design and code for a seamless experience.",
+    systems: "Seeing the bigger picture in every decision",
+    business: "Every design choice impacts growth and outcomes",
+    alignment: "Connecting design and code for a seamless experience",
   };
 
   useEffect(() => {
@@ -469,7 +518,7 @@ function About() {
       }`,
       inner: `p-2 rounded-full ${isActive ? "bg-blue-500" : "bg-slate-400"}`,
       text: `${
-        isActive ? "text-blue-500 " : "text-slate-400"
+        isActive ? "text-blue-500 " : "text-slate-600 dark:text-slate-400"
       } transition-colors duration-300`,
     };
   };
@@ -480,18 +529,18 @@ function About() {
         <h1 className="text-center">
           clarity in every{" "}
           <span className="font-pacifico tracking-wider text-blue-500">
-            solution.
+            solution
           </span>
         </h1>
 
-        <p className="text-slate-400 text-center max-w-[500px]">
+        <p className="text-slate-600 dark:text-slate-400 text-center max-w-[500px]">
           {meanings[selected as keyof typeof meanings]}
         </p>
 
         <div className="flex gap-[80px] md:gap-[50px] mt-5 lg:mt-0 flex-wrap justify-center">
           {/* Card 1 */}
           <div
-            className="h-[100px] flex flex-col md:flex-row items-center gap-5"
+            className="cursor-pointer h-[100px] flex flex-col md:flex-row items-center gap-5"
             onClick={() => handleClick("systems")}
           >
             <div className={getCardStyle("systems").outer}>
@@ -504,7 +553,7 @@ function About() {
 
           {/* Card 2 */}
           <div
-            className="h-[100px] flex flex-col md:flex-row items-center gap-5"
+            className="cursor-pointer h-[100px] flex flex-col md:flex-row items-center gap-5"
             onClick={() => handleClick("business")}
           >
             <div className={getCardStyle("business").outer}>
@@ -517,7 +566,7 @@ function About() {
 
           {/* Card 3 */}
           <div
-            className="h-[100px] flex flex-col md:flex-row items-center gap-5"
+            className="cursor-pointer h-[100px] flex flex-col md:flex-row items-center gap-5"
             onClick={() => handleClick("alignment")}
           >
             <div className={getCardStyle("alignment").outer}>
@@ -529,8 +578,6 @@ function About() {
               Design + Dev Alignment
             </h5>
           </div>
-
-          <Pointer className="fill-blue-500" />
         </div>
       </section>
     </>
