@@ -10,7 +10,7 @@ import { ModeToggle } from "../buttons/mode-toggle";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home size={16} /> },
-  // { name: "Research", href: "/research", icon: <FolderSearch size={16} /> },
+  { name: "Research", href: "/research", icon: <FolderSearch size={16} /> },
   // { name: "About", href: "/about", icon: <CircleUser size={16} /> },
   // { name: "Contact", href: "/contact", icon: <AtSign size={16} /> },
 ];
@@ -28,7 +28,7 @@ export function NavBar() {
             <Avatar className="w-[25px] h-[25px]">
               <AvatarImage
                 src="https://github.com/jkbicierro.png"
-                alt="@shadcn"
+                alt="John Bicierro"
               />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
