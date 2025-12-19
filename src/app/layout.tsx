@@ -5,6 +5,7 @@ import "./globals.css";
 import { NavBar } from "@/components/block/navbar";
 import Copyright from "@/components/block/copyright";
 import Footer from "@/components/block/footer";
+import { Toaster } from "sonner";
 
 const dm_font = DM_Sans({
   variable: "--font-dm",
@@ -18,8 +19,9 @@ const pacifico_font = Pacifico({
 });
 
 export const metadata: Metadata = {
-  title: "John Bicierro - jkbicierro",
-  description: "John Bicierro's personal portfolio website.",
+  title: "John Bicierro",
+  description:
+    "John Bicierro's personal website showcasing projects and blog posts.",
 };
 
 export default function RootLayout({
@@ -41,6 +43,8 @@ export default function RootLayout({
           <Copyright />
           <Footer />
         </ThemeProvider>
+
+        <Toaster position="bottom-right" expand={false} richColors />
       </body>
     </html>
   );
