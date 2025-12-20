@@ -7,7 +7,7 @@ import { getAllStudies } from "@/lib/studies";
 import { getAllProjects } from "@/lib/projects";
 import { BookOpen, Folder, Lightbulb } from "lucide-react";
 
-export default function Footer() {
+export default async function Footer() {
   const contentLimit = 5;
   const insights = getAllInsights().slice(0, contentLimit);
   const studies = getAllStudies().slice(0, contentLimit);
@@ -20,48 +20,56 @@ export default function Footer() {
         {/* Section 1 */}
         <div className="flex flex-col lg:flex-row text-center lg:text-start justify-between gap-10">
           {/* Case Studies */}
-          <ul className="flex flex-col items-center lg:items-start gap-2">
+          <div className="space-y-2">
             <small className="flex gap-2 items-center">
               <BookOpen size={14} /> Case Studies ({studies.length})
             </small>
-            {studies.map((study) => (
-              <li
-                key={study.slug}
-                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
-              >
-                <Link href={`/studies/${study.slug}`}>{study.title}</Link>
-              </li>
-            ))}
-          </ul>
+            <ul className="flex flex-col items-center lg:items-start gap-2">
+              {studies.map((study) => (
+                <li
+                  key={study.slug}
+                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
+                >
+                  <Link href={`/studies/${study.slug}`}>{study.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Insights */}
-          <div className="flex flex-col items-center lg:items-start gap-2">
+          <div className="space-y-2">
             <small className="flex gap-2 items-center">
               <Lightbulb size={14} />
               Insights ({insights.length})
             </small>
-            {insights.map((insight) => (
-              <div
-                key={insight.slug}
-                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs "
-              >
-                <Link href={`/insights/${insight.slug}`}>{insight.title}</Link>
-              </div>
-            ))}
+            <div className="flex flex-col items-center lg:items-start gap-2">
+              {insights.map((insight) => (
+                <div
+                  key={insight.slug}
+                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs "
+                >
+                  <Link href={`/insights/${insight.slug}`}>{insight.title}</Link>
+                </div>
+              ))}
+            </div>
           </div>
+
           {/* Projects */}
-          <div className="flex flex-col items-center lg:items-start gap-2">
+          <div className="space-y-2">
             <small className="flex gap-2 items-center">
               <Folder size={14} />
               Projects ({projects.length})
             </small>
-            {projects.map((project) => (
-              <div
-                key={project.slug}
-                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
-              >
-                <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-              </div>
-            ))}
+            <div className="flex flex-col items-center lg:items-start gap-2">
+              {projects.map((project) => (
+                <div
+                  key={project.slug}
+                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
+                >
+                  <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
