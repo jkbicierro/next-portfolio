@@ -40,7 +40,7 @@ export default async function Page({ params }: PageProps) {
         </section>
       </>
     );
-  } catch (error) {
+  } catch {
     return notFound();
   }
 }
