@@ -12,22 +12,22 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const insights = getAllInsights();
-
-  console.log(insights);
   return (
     <>
       <section className="py-[200px] flex flex-col items-center">
-        <h2>I share my strategies, learnings, and practical approaches</h2>
+        <h2>i share my strategies, learnings, and practical approaches</h2>
 
         <div className="mt-20 flex flex-col gap-10">
           {insights.map((insight) => (
-            <Link key={insight.slug} href={`/insights/${insight.slug}`}>
+            <Link key={insight.slug} href={`/insights/${insight.slug}`} className="group">
               <div className="flex flex-row gap-5">
                 <small className="w-[150px] text-slate-600 dark:text-slate-400">
                   {insight.date ? format(parseISO(insight.date), "MMMM d, yyyy") : ""}
                 </small>
                 <div className="flex flex-col gap-2">
-                  <h5>{insight.title}</h5>
+                  <h5 className="group-hover:text-primary group-hover:underline">
+                    {insight.title}
+                  </h5>
                   <small className="text-slate-600 dark:text-slate-400">
                     {insight.description}
                   </small>
