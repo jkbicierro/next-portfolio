@@ -3,7 +3,7 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
-export default function copyright() {
+export default function Copyright() {
   return (
     <div className="hidden lg:block">
       <span className="flex gap-2 items-center fixed z-50 bottom-3 left-3 text-slate-500 text-xs">
@@ -12,7 +12,7 @@ export default function copyright() {
             src="https://github.com/jkbicierro.png"
             alt="John Bicierro"
           />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>JB</AvatarFallback>
         </Avatar>
         Crafted from Scratch &copy; 2025 John Bicierro
       </span>
