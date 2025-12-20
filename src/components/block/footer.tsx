@@ -6,41 +6,43 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full border flex justify-center">
-      <div className="py-[50px] w-[1000px]">
+    <footer className="py-[50px] w-full flex justify-center">
+      <div className="w-[1000px]">
         <div className="flex justify-between">
           <Avatar className="w-[25px] h-[25px]">
-            <AvatarImage
-              src="https://github.com/jkbicierro.png"
-              alt="John Bicierro"
-            />
+            <AvatarImage src="https://github.com/jkbicierro.png" alt="John Bicierro" />
             <AvatarFallback>JB</AvatarFallback>
           </Avatar>
 
           {/* Navigation */}
           <div className="flex flex-col gap-2">
             <span>John Bicierro</span>
-            <Link href="#">Home</Link>
-            <Link href="#">Research</Link>
-            <Link href="#">Sitemap</Link>
+            <Link href="#">
+              <small className="text-slate-600 dark:text-slate-400">Home</small>
+            </Link>
+            <Link href="#">
+              <small className="text-slate-600 dark:text-slate-400">Research</small>
+            </Link>
+            <Link href="#">
+              <small className="text-slate-600 dark:text-slate-400">Sitemap</small>
+            </Link>
           </div>
 
           {/* Resources */}
           <div className="flex flex-col gap-2">
             <span>Resources</span>
             <Link href="#">
-              <small>Resume</small>
+              <small className="text-slate-600 dark:text-slate-400">Resume</small>
             </Link>
             <Link href="#">
-              <small>Curriculum Vitae</small>
+              <small className="text-slate-600 dark:text-slate-400">
+                Curriculum Vitae
+              </small>
             </Link>
           </div>
 
           <div className="flex flex-col gap-2">
-            <Link
-              href="https://www.linkedin.com/in/jkbicierro/"
-              target="_blank"
-            >
+            <Link href="https://www.linkedin.com/in/jkbicierro/" target="_blank">
               <FaLinkedin size={25} />
             </Link>
             <Link href="https://github.com/jkbicierro" target="_blank">
