@@ -11,8 +11,13 @@ import { About } from "@/components/home/about";
 import { getAllStudies } from "@/lib/studies";
 import { format, parseISO } from "date-fns";
 import { getAllProjects } from "@/lib/projects";
+import { getAllInsights } from "@/lib/insights";
 
-export default function Page() {
+export default async function Page() {
+  const insights = getAllInsights().slice(0, 5);
+  const projects = getAllProjects().slice(0, 5);
+  const studies = getAllStudies().slice(0, 3);
+
   return (
     <main className="px-[20px]">
       <Hero />
@@ -23,11 +28,11 @@ export default function Page() {
 
       <Process />
 
-      <Cases />
+      <Cases studies={studies} />
 
-      <Insights />
+      <Insights insights={insights} />
 
-      <Projects />
+      <Projects projects={projects} />
 
       {/* Contact */}
       <section className="py-[200px] flex items-center justify-center">
@@ -146,8 +151,7 @@ function Logos() {
   );
 }
 
-function Insights() {
-  const insights = getAllStudies().slice(0, 5);
+function Insights({ insights }: { insights: ReturnType<typeof getAllInsights> }) {
   return (
     <section className="py-[200px] flex flex-col items-center">
       <h2 className="text-center">what building software continually teaches me</h2>
@@ -335,8 +339,7 @@ function Hero() {
   );
 }
 
-function Projects() {
-  const projects = getAllProjects().slice(0, 5);
+function Projects({ projects }: { projects: ReturnType<typeof getAllProjects> }) {
   return (
     <section className="py-[200px] flex flex-col items-center">
       <h2 className="text-center">
@@ -393,8 +396,7 @@ function Projects() {
   );
 }
 
-function Cases() {
-  const studies = getAllStudies().slice(0, 3);
+function Cases({ studies }: { studies: ReturnType<typeof getAllStudies> }) {
   return (
     <section className="py-[200px] flex flex-col items-center">
       <h2 className="text-center">
