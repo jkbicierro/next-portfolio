@@ -6,9 +6,9 @@ import { format, parseISO } from "date-fns";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Case Studies - John Bicierro",
+  title: "Case Studies",
   description:
-    "A collection of detailed case studies showcasing John Bicierro's projects and design processes.",
+    "Explore John Bicierro's case studies showcasing real-world problem solving and results.",
 };
 
 export default function Page() {
