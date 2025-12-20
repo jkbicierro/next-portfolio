@@ -1,9 +1,26 @@
-import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+import { NextConfig } from "next";
+import remarkGfm from "remark-gfm";
 
 const nextConfig: NextConfig = {
-    images: {
-        domains: ["cdn.dribbble.com", "mockuuups.studio"],
-    },
+  images: {
+    domains: ["cdn.dribbble.com", "mockuuups.studio"],
+  },
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+  experimental: {
+    mdxRs: true,
+  },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm, ["remark-toc", { heading: "The Table" }]],
+    rehypePlugins: [
+      "rehype-slug",
+
+      ["rehype-katex", { strict: true, throwOnError: true }],
+    ],
+  },
+});
+
+export default withMDX(nextConfig);
