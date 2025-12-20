@@ -4,16 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Brain, ChartLine, ChevronRight, Puzzle } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Pointer } from "@/components/ui/pointer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { Link as LinkIcon } from "lucide-react";
-import { toast } from "sonner";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Page() {
   return (
@@ -84,9 +80,7 @@ export default function Page() {
           <div className="flex flex-col items-center gap-20">
             <h2 className="text-center">
               let&apos;s build something that{" "}
-              <span className="font-pacifico tracking-wider text-blue-500">
-                works
-              </span>
+              <span className="font-pacifico tracking-wider text-blue-500">works</span>
             </h2>
 
             <div className="w-full max-w-[600px] space-y-5">
@@ -233,8 +227,7 @@ const projectCards = [
     small: "Edge",
     title: "User Control Panel & Payment Gateway",
     year: "2025",
-    description:
-      "A circulation of the game server economy through a web platform.",
+    description: "A circulation of the game server economy through a web platform.",
     badges: [
       { label: "Language: Javascript/Typescript", variant: "secondary" },
       { label: "Language: C/C++", variant: "secondary" },
@@ -278,10 +271,7 @@ function Projects() {
     <section className="py-[200px] flex flex-col items-center">
       <h2 className="text-center">
         a few things i&apos;ve{" "}
-        <span className="font-pacifico tracking-wider text-blue-500">
-          worked
-        </span>{" "}
-        on
+        <span className="font-pacifico tracking-wider text-blue-500">worked</span> on
       </h2>
       {/* Cards */}
       <div className="mt-20">
@@ -310,9 +300,7 @@ function Projects() {
                 </small>
                 <div className="flex justify-between items-center gap-5">
                   <h5>{card.title}</h5>
-                  <span className="text-slate-600 dark:text-slate-400">
-                    {card.year}
-                  </span>
+                  <span className="text-slate-600 dark:text-slate-400">{card.year}</span>
                 </div>
 
                 <p className="max-w-[700px] text-slate-600 dark:text-slate-400">
@@ -375,10 +363,7 @@ function Process() {
             </p>
           </div>
         </div>
-        <Separator
-          orientation="vertical"
-          className="w-[2px] h-[300px] bg-blue-500"
-        />
+        <Separator orientation="vertical" className="w-[2px] h-[300px] bg-blue-500" />
         {/* Second Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -393,15 +378,11 @@ function Process() {
               plan for <span className="text-blue-500">scale</span>
             </h3>
             <p className="text-slate-600 dark:text-slate-400">
-              Architecture first, clean data flow, right tools, long-term
-              thinking.
+              Architecture first, clean data flow, right tools, long-term thinking.
             </p>
           </div>
         </div>
-        <Separator
-          orientation="vertical"
-          className="w-[2px] h-[300px] bg-blue-500"
-        />
+        <Separator orientation="vertical" className="w-[2px] h-[300px] bg-blue-500" />
         {/* Third Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -419,10 +400,7 @@ function Process() {
             </p>
           </div>
         </div>
-        <Separator
-          orientation="vertical"
-          className="w-[2px] h-[300px] bg-blue-500"
-        />
+        <Separator orientation="vertical" className="w-[2px] h-[300px] bg-blue-500" />
         {/* Fourth Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -441,10 +419,7 @@ function Process() {
             </p>
           </div>
         </div>
-        <Separator
-          orientation="vertical"
-          className="w-[2px] h-[300px] bg-blue-500"
-        />
+        <Separator orientation="vertical" className="w-[2px] h-[300px] bg-blue-500" />
         {/* Last Step: Card */}
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center">
@@ -480,9 +455,7 @@ function Hero() {
         <h1 className="font-medium space-y-5 text-nowrap">
           <div className="flex gap-2 items-center justify-center">
             <span>designed to</span>{" "}
-            <span className="tracking-wider font-pacifico text-blue-500">
-              simplify,
-            </span>
+            <span className="tracking-wider font-pacifico text-blue-500">simplify,</span>
           </div>
 
           <div className="flex items-center justify-center gap-2">
@@ -552,9 +525,7 @@ function About() {
       <section className="py-[200px] flex flex-col items-center justify-center gap-5">
         <h2 className="text-center">
           clarity in every{" "}
-          <span className="font-pacifico tracking-wider text-blue-500">
-            solution
-          </span>
+          <span className="font-pacifico tracking-wider text-blue-500">solution</span>
         </h2>
 
         <p className="text-slate-600 dark:text-slate-400 text-center max-w-[500px]">
@@ -598,9 +569,7 @@ function About() {
                 <Puzzle className="text-white" />
               </div>
             </div>
-            <h5 className={getCardStyle("alignment").text}>
-              Design + Dev Alignment
-            </h5>
+            <h5 className={getCardStyle("alignment").text}>Design + Dev Alignment</h5>
           </div>
         </div>
       </section>
