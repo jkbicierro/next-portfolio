@@ -150,15 +150,16 @@ function Insights() {
   const insights = getAllStudies().slice(0, 5);
   return (
     <section className="py-[200px] flex flex-col items-center">
-      <h2>what building software continually teaches me</h2>
+      <h2 className="text-center">what building software continually teaches me</h2>
 
-      <div className="mt-20 flex flex-col gap-10">
+      <div className="mt-20 grid grid-cols-1 gap-10">
         {insights.map((insight) => (
           <Link key={insight.slug} href={`/insights/${insight.slug}`} className="group">
             <div className="flex flex-row gap-5">
-              <small className="w-[150px] text-slate-600 dark:text-slate-400">
+              <small className="min-w-[80px] max-w-[80px] lg:min-w-[150px] lg:max-w-[150px] text-slate-600 dark:text-slate-400">
                 {insight.date ? format(parseISO(insight.date), "MMMM d, yyyy") : ""}
               </small>
+
               <div className="flex flex-col gap-2">
                 <h5 className="group-hover:text-primary group-hover:underline">
                   {insight.title}
@@ -367,11 +368,11 @@ function Projects() {
                 <small className="text-slate-600 dark:text-slate-400 uppercase">
                   {project.small}
                 </small>
-                <div className="flex justify-between items-center gap-5">
+                <div className="flex justify-between items-start gap-5">
                   <h5>{project.title}</h5>
-                  <span className="text-slate-600 dark:text-slate-400">
+                  <small className="text-slate-600 dark:text-slate-400 text-nowrap">
                     {project.date ? format(parseISO(project.date), "MMMM d, yyyy") : ""}
-                  </span>
+                  </small>
                 </div>
 
                 <p className="max-w-[700px] text-slate-600 dark:text-slate-400">
@@ -396,7 +397,9 @@ function Cases() {
   const studies = getAllStudies().slice(0, 3);
   return (
     <section className="py-[200px] flex flex-col items-center">
-      <h2>from messy requirements to clear, scalable architectures</h2>
+      <h2 className="text-center">
+        from messy requirements to clear, scalable architectures
+      </h2>
 
       <div className="mt-20 w-full lg:w-[1000px]">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
