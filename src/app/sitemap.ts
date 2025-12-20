@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getAllInsights } from "@/lib/insights";
+import { getAllStudies } from "@/lib/studies";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   const lastModified = new Date();
   const insights = getAllInsights();
+  const studies = getAllStudies();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -40,5 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...insightRoutes];
+  const studyRoutes: MetadataRoute.Sitemap = studies.map((study) => ({
+    url: `${baseUrl}/insights/${study.slug}`,
+    lastModified: study.date ? new Date(study.date) : lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...insightRoutes, ...studyRoutes];
 }
