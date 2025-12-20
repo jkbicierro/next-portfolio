@@ -84,12 +84,12 @@ export function NavBar() {
             {navigation.map((item, index) => {
               const isActive = pathname === item.href;
               return (
-                <li
-                  key={index}
-                  className={`${isActive && "text-blue-500"} 
+                <li key={index}>
+                  <Link
+                    href={item.href}
+                    className={`${isActive && "text-blue-500"} 
                                             flex flex-col text-[6px] gap-1 uppercase font-semibold items-center`}
-                >
-                  <Link href={item.href}>
+                  >
                     {item.icon}
                     {item.name}
                   </Link>
