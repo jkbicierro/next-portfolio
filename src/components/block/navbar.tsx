@@ -38,17 +38,16 @@ export function NavBar() {
                 {navigation.map((item, index) => {
                   const isActive = pathname === item.href;
                   return (
-                    <Link key={index} href={item.href}>
-                      <li
-                        className={`${
-                          isActive
-                            ? "text-blue-500 border-b-2 border-blue-500"
-                            : "text-slate-500"
-                        }`}
-                      >
-                        {item.name}
-                      </li>
-                    </Link>
+                    <li
+                      key={index}
+                      className={`${
+                        isActive
+                          ? "text-blue-500 border-b-2 border-blue-500"
+                          : "text-slate-500"
+                      }`}
+                    >
+                      <Link href={item.href}>{item.name}</Link>
+                    </li>
                   );
                 })}
               </ul>
@@ -85,15 +84,16 @@ export function NavBar() {
             {navigation.map((item, index) => {
               const isActive = pathname === item.href;
               return (
-                <Link key={index} href={item.href}>
-                  <li
-                    className={`${isActive && "text-blue-500"} 
+                <li
+                  key={index}
+                  className={`${isActive && "text-blue-500"} 
                                             flex flex-col text-[6px] gap-1 uppercase font-semibold items-center`}
-                  >
+                >
+                  <Link href={item.href}>
                     {item.icon}
                     {item.name}
-                  </li>
-                </Link>
+                  </Link>
+                </li>
               );
             })}
           </ul>
