@@ -1,71 +1,26 @@
-"use client";
-
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Brain, ChartLine, ChevronRight, Puzzle } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { ChevronRight } from "lucide-react";
+import React from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { About } from "@/components/home/about";
+import { getAllStudies } from "@/lib/studies";
+import { format, parseISO } from "date-fns";
+import { getAllProjects } from "@/lib/projects";
 
 export default function Page() {
   return (
     <main className="px-[20px]">
       <Hero />
-      <section>
-        <div className="flex flex-col items-center justify-center gap-5 ">
-          <small className="uppercase text-slate-600 dark:text-slate-400">
-            People and teams I&apos;ve worked with
-          </small>
-          <div className="grid grid-cols-4 lg:grid-cols-5 gap-10">
-            <Image
-              src="/assets/adnu.png"
-              alt="Ateneo de Naga University | John Bicierro"
-              width={700}
-              height={700}
-              className="h-[40px] w-[40px] object-contain"
-            />
 
-            <Image
-              src="/assets/caceres.png"
-              alt="Archdiocese of Caceres | John Bicierro"
-              width={700}
-              height={700}
-              className="h-[40px] w-[40px] object-contain"
-            />
-            <Image
-              src="/assets/biscast.png"
-              alt="Biscat | John Bicierro"
-              width={700}
-              height={700}
-              className="h-[40px] w-[40px] object-contain"
-            />
-            <Image
-              src="/assets/codekada.png"
-              alt="Codekada | John Bicierro"
-              width={700}
-              height={700}
-              className="h-[40px] w-[40px] object-contain"
-            />
-            <Image
-              src="/assets/csguild.png"
-              alt="CS Guild | John Bicierro"
-              width={700}
-              height={700}
-              className="h-[40px] w-[40px] object-contain"
-            />
-
-            {/* <div className="border-2 border-dotted rounded-full h-[40px] w-[40px] flex items-center justify-center cursor-pointer">
-              <Plus size={16} className="text-slate-600 dark:text-slate-400" />
-            </div> */}
-          </div>
-        </div>
-      </section>
+      <Logos />
 
       <About />
+
       <Process />
 
       <Cases />
@@ -137,192 +92,89 @@ export default function Page() {
   );
 }
 
+function Logos() {
+  return (
+    <section>
+      <div className="flex flex-col items-center justify-center gap-5 ">
+        <small className="uppercase text-slate-600 dark:text-slate-400">
+          People and teams I&apos;ve worked with
+        </small>
+        <div className="grid grid-cols-4 lg:grid-cols-5 gap-10">
+          <Image
+            src="/assets/adnu.png"
+            alt="Ateneo de Naga University | John Bicierro"
+            width={700}
+            height={700}
+            className="h-[40px] w-[40px] object-contain"
+          />
+
+          <Image
+            src="/assets/caceres.png"
+            alt="Archdiocese of Caceres | John Bicierro"
+            width={700}
+            height={700}
+            className="h-[40px] w-[40px] object-contain"
+          />
+          <Image
+            src="/assets/biscast.png"
+            alt="Biscat | John Bicierro"
+            width={700}
+            height={700}
+            className="h-[40px] w-[40px] object-contain"
+          />
+          <Image
+            src="/assets/codekada.png"
+            alt="Codekada | John Bicierro"
+            width={700}
+            height={700}
+            className="h-[40px] w-[40px] object-contain"
+          />
+          <Image
+            src="/assets/csguild.png"
+            alt="CS Guild | John Bicierro"
+            width={700}
+            height={700}
+            className="h-[40px] w-[40px] object-contain"
+          />
+
+          {/* <div className="border-2 border-dotted rounded-full h-[40px] w-[40px] flex items-center justify-center cursor-pointer">
+              <Plus size={16} className="text-slate-600 dark:text-slate-400" />
+            </div> */}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Insights() {
+  const insights = getAllStudies().slice(0, 5);
   return (
     <section className="py-[200px] flex flex-col items-center">
       <h2>what building software continually teaches me</h2>
 
-      <div className="mt-20">insights</div>
-    </section>
-  );
-}
-
-const casesCards = [
-  {
-    image: "/assets/liquid/1.png",
-    alt: "Ateneo de Naga University | John Bicierro",
-    title: "From chaotic stock to real-time clarity",
-    type: "Case Study",
-    date: "January 17, 2024",
-  },
-  {
-    image: "/assets/liquid/2.png",
-    alt: "Ateneo de Naga University | John Bicierro",
-    title: "Turning data into actionable insights",
-    type: "Case Study",
-    date: "January 17, 2024",
-  },
-  {
-    image: "/assets/liquid/3.png",
-    alt: "Ateneo de Naga University | John Bicierro",
-    title: "Secure login without friction",
-    type: "Case Study",
-    date: "January 17, 2024",
-  },
-];
-
-function Cases() {
-  return (
-    <section className="py-[200px] flex flex-col items-center">
-      <h2>from messy requirements to clear, scalable architectures</h2>
-
-      <div className="mt-20 w-full lg:w-[1000px]">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-          {casesCards.map((card, idx) => (
-            <div key={idx} className="w-full">
-              <Image
-                src={card.image}
-                alt={card.alt}
-                width={1200}
-                height={1200}
-                className="border rounded-xl h-[350px] w-full"
-              />
-
-              <h6 className="mt-4 truncate">{card.title}</h6>
-
-              <div className="mt-2 flex items-center gap-2">
-                <small>{card.type}</small>
-                <small className="text-slate-400">{card.date}</small>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <Button variant={"link"} className="mt-10" asChild>
-        <Link href="/studies">
-          Explore my Case Studies <ChevronRight />
-        </Link>
-      </Button>
-    </section>
-  );
-}
-
-const projectCards = [
-  {
-    small: "SHINRI",
-    title: "Smart Health Information & Navigated Records Integration",
-    year: "2025",
-    description:
-      "Built a real-time dashboard for tracking product movement and stock levels.",
-    badges: [
-      { label: "Language: PHP", variant: "secondary" },
-      { label: "Framework: Laravel", variant: "secondary" },
-      { label: "Database: Oracle", variant: "secondary" },
-    ],
-    image: "/assets/adnu.png",
-    alt: "Ateneo de Naga University | John Bicierro",
-  },
-  {
-    small: "Edge",
-    title: "User Control Panel & Payment Gateway",
-    year: "2025",
-    description: "A circulation of the game server economy through a web platform.",
-    badges: [
-      { label: "Language: Javascript/Typescript", variant: "secondary" },
-      { label: "Language: C/C++", variant: "secondary" },
-      { label: "Framework: Next.js", variant: "secondary" },
-      { label: "Database: PostgreSQL", variant: "secondary" },
-      { label: "Database: MySQL", variant: "secondary" },
-    ],
-    image: "/assets/edgerp.png",
-    alt: "Edge Roleplay | John Bicierro",
-  },
-  {
-    small: "Biomemes",
-    title: "Image Listing & Quiz System",
-    year: "2025",
-    description: "Not set",
-    badges: [
-      { label: "Language: Javascript/Typescript", variant: "secondary" },
-      { label: "Framework: Next.js", variant: "secondary" },
-      { label: "Database: PostgreSQL", variant: "secondary" },
-    ],
-    image: "/assets/projects/biomemes.png",
-    alt: "Biomemes | John Bicierro",
-  },
-  {
-    small: "National Youth Day",
-    title: "Information Portal & Announcement Hub",
-    year: "2025",
-    description: "Not set",
-    badges: [
-      { label: "Language: Javascript/Typescript", variant: "secondary" },
-      { label: "Framework: Next.js", variant: "secondary" },
-      { label: "Database: PostgreSQL", variant: "secondary" },
-    ],
-    image: "/assets/projects/nyd.png",
-    alt: "National Youth Day | John Bicierro",
-  },
-];
-
-function Projects() {
-  return (
-    <section className="py-[200px] flex flex-col items-center">
-      <h2 className="text-center">
-        a few things i&apos;ve{" "}
-        <span className="font-pacifico tracking-wider text-blue-500">worked</span> on
-      </h2>
-      {/* Cards */}
-      <div className="mt-20">
-        {[...projectCards]
-          .sort((a, b) => Number(b.year) - Number(a.year))
-          .map((card, idx) => (
-            <div
-              key={idx}
-              className="mt-5 pb-5 border-b hover:border-slate-300 dark:hover:border-slate-700 transition-colors flex flex-row items-center gap-5 cursor-pointer"
-            >
-              {card.image ? (
-                <Image
-                  src={card.image}
-                  alt={card.alt}
-                  width={600}
-                  height={600}
-                  className="rounded-full h-[40px] w-[40px] object-contain"
-                />
-              ) : (
-                <div className="rounded-full h-[40px] min-w-[40px] bg-zinc-800" />
-              )}
-
-              <div className="w-full space-y-2">
-                <small className="text-slate-600 dark:text-slate-400 uppercase">
-                  {card.small}
+      <div className="mt-20 flex flex-col gap-10">
+        {insights.map((insight) => (
+          <Link key={insight.slug} href={`/insights/${insight.slug}`} className="group">
+            <div className="flex flex-row gap-5">
+              <small className="w-[150px] text-slate-600 dark:text-slate-400">
+                {insight.date ? format(parseISO(insight.date), "MMMM d, yyyy") : ""}
+              </small>
+              <div className="flex flex-col gap-2">
+                <h5 className="group-hover:text-primary group-hover:underline">
+                  {insight.title}
+                </h5>
+                <small className="text-slate-600 dark:text-slate-400">
+                  {insight.description}
                 </small>
-                <div className="flex justify-between items-center gap-5">
-                  <h5>{card.title}</h5>
-                  <span className="text-slate-600 dark:text-slate-400">{card.year}</span>
-                </div>
-
-                <p className="max-w-[700px] text-slate-600 dark:text-slate-400">
-                  {card.description}
-                </p>
-
-                <div className="flex text-nowrap gap-1 flex-wrap">
-                  {card.badges.map((badge, i) => (
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    <Badge key={i} variant={badge.variant as any}>
-                      {badge.label}
-                    </Badge>
-                  ))}
-                </div>
               </div>
             </div>
-          ))}
+          </Link>
+        ))}
       </div>
 
       <Button variant={"link"} asChild>
-        <Link href="/projects" className="mt-10">
-          See more of my projects <ChevronRight />
+        <Link href="/insights" className="mt-10">
+          View more insights <ChevronRight />
         </Link>
       </Button>
     </section>
@@ -482,99 +334,106 @@ function Hero() {
   );
 }
 
-const cardOrder = ["systems", "business", "alignment"];
-
-function About() {
-  const [selected, setSelected] = useState<string>("systems");
-
-  const meanings = {
-    systems: "Seeing the bigger picture in every decision",
-    business: "Every design choice impacts growth and outcomes",
-    alignment: "Connecting design and code for a seamless experience",
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelected((prev) => {
-        const nextIndex = (cardOrder.indexOf(prev) + 1) % cardOrder.length;
-        return cardOrder[nextIndex];
-      });
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleClick = (key: string) => {
-    setSelected(key);
-  };
-
-  const getCardStyle = (key: string) => {
-    const isActive = selected === key;
-    return {
-      outer: `-z-50 p-1 rounded-full shadow-2xl transition-all duration-300 ${
-        isActive
-          ? "bg-blue-600 shadow-blue-500 scale-110"
-          : "bg-slate-300 dark:bg-slate-500"
-      }`,
-      inner: `p-2 rounded-full ${isActive ? "bg-blue-500" : "bg-slate-400"}`,
-      text: `${
-        isActive ? "text-blue-500 " : "text-slate-600 dark:text-slate-400"
-      } transition-colors duration-300`,
-    };
-  };
-
+function Projects() {
+  const projects = getAllProjects().slice(0, 5);
   return (
-    <>
-      <section className="py-[200px] flex flex-col items-center justify-center gap-5">
-        <h2 className="text-center">
-          clarity in every{" "}
-          <span className="font-pacifico tracking-wider text-blue-500">solution</span>
-        </h2>
+    <section className="py-[200px] flex flex-col items-center">
+      <h2 className="text-center">
+        a few things i&apos;ve{" "}
+        <span className="font-pacifico tracking-wider text-blue-500">worked</span> on
+      </h2>
+      {/* Cards */}
+      <div className="mt-20">
+        <div className="flex flex-col">
+          {projects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className="mt-5 pb-5 border-b hover:border-slate-300 dark:hover:border-slate-700 transition-colors flex flex-row items-center gap-5 cursor-pointer"
+            >
+              {project.image ? (
+                <Image
+                  src={project.image}
+                  alt={project.alt}
+                  width={600}
+                  height={600}
+                  className="rounded-full h-[40px] w-[40px] object-contain"
+                />
+              ) : (
+                <div className="rounded-full h-[40px] min-w-[40px] bg-zinc-800" />
+              )}
 
-        <p className="text-slate-600 dark:text-slate-400 text-center max-w-[500px]">
-          {meanings[selected as keyof typeof meanings]}
-        </p>
+              <div className="w-full space-y-2">
+                <small className="text-slate-600 dark:text-slate-400 uppercase">
+                  {project.small}
+                </small>
+                <div className="flex justify-between items-center gap-5">
+                  <h5>{project.title}</h5>
+                  <span className="text-slate-600 dark:text-slate-400">
+                    {project.date ? format(parseISO(project.date), "MMMM d, yyyy") : ""}
+                  </span>
+                </div>
 
-        <div className="flex gap-[80px] md:gap-[50px] mt-5 lg:mt-0 flex-wrap justify-center">
-          {/* Card 1 */}
-          <div
-            className="cursor-pointer h-[100px] flex flex-col md:flex-row items-center gap-5"
-            onClick={() => handleClick("systems")}
-          >
-            <div className={getCardStyle("systems").outer}>
-              <div className={getCardStyle("systems").inner}>
-                <Brain className="text-white" />
+                <p className="max-w-[700px] text-slate-600 dark:text-slate-400">
+                  {project.description}
+                </p>
               </div>
-            </div>
-            <h5 className={getCardStyle("systems").text}>Systems Thinking</h5>
-          </div>
-
-          {/* Card 2 */}
-          <div
-            className="cursor-pointer h-[100px] flex flex-col md:flex-row items-center gap-5"
-            onClick={() => handleClick("business")}
-          >
-            <div className={getCardStyle("business").outer}>
-              <div className={getCardStyle("business").inner}>
-                <ChartLine className="text-white" />
-              </div>
-            </div>
-            <h5 className={getCardStyle("business").text}>Business Impact</h5>
-          </div>
-
-          {/* Card 3 */}
-          <div
-            className="cursor-pointer h-[100px] flex flex-col md:flex-row items-center gap-5"
-            onClick={() => handleClick("alignment")}
-          >
-            <div className={getCardStyle("alignment").outer}>
-              <div className={getCardStyle("alignment").inner}>
-                <Puzzle className="text-white" />
-              </div>
-            </div>
-            <h5 className={getCardStyle("alignment").text}>Design + Dev Alignment</h5>
-          </div>
+            </Link>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+
+      <Button variant={"link"} asChild>
+        <Link href="/projects" className="mt-10">
+          See more of my projects <ChevronRight />
+        </Link>
+      </Button>
+    </section>
+  );
+}
+
+function Cases() {
+  const studies = getAllStudies().slice(0, 3);
+  return (
+    <section className="py-[200px] flex flex-col items-center">
+      <h2>from messy requirements to clear, scalable architectures</h2>
+
+      <div className="mt-20 w-full lg:w-[1000px]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {studies.map((study) => (
+            <Link
+              href={`/studies/${study.slug}`}
+              key={study.slug}
+              className="w-full group"
+            >
+              <Image
+                src={"/assets/liquid/1.png"}
+                alt={study.title}
+                height={800}
+                width={800}
+                className="border rounded-xl h-[350px] w-full "
+              />
+
+              <h6 className="mt-4 truncate group-hover:text-primary group-hover:underline">
+                {study.title}
+              </h6>
+
+              <div className="mt-2 flex items-center gap-2">
+                <small>{study.type}</small>
+                <small className="text-slate-400">
+                  {study.date ? format(parseISO(study.date), "MMMM d, yyyy") : ""}
+                </small>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <Button variant={"link"} className="mt-10" asChild>
+        <Link href="/studies">
+          Explore my Case Studies <ChevronRight />
+        </Link>
+      </Button>
+    </section>
   );
 }
