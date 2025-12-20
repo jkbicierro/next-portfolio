@@ -178,6 +178,7 @@ function Cases() {
 
       <div className="mt-20 w-full lg:w-[1000px]">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          
           {casesCards.map((card, idx) => (
             <div key={idx} className="w-full">
               <Image
@@ -471,9 +472,11 @@ function Hero() {
         </p>
         <div className="flex gap-4">
           <Button asChild>
-            <Link href="/research">View Case Studies</Link>
+            <Link href="/studies">View Case Studies</Link>
           </Button>
-          <Button variant="secondary">Explore the Process</Button>
+          <Button variant="secondary" asChild>
+            <Link href="/insights">Explore the Process</Link>
+          </Button>
         </div>
       </div>
     </section>
