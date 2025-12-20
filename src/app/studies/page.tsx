@@ -1,6 +1,9 @@
 import React from "react";
 import { Metadata } from "next";
 import Image from "next/image";
+import { getAllStudies } from "@/lib/studies";
+import { format, parseISO } from "date-fns";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Case Studies - John Bicierro",
@@ -9,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const studies = getAllStudies();
   return (
     <main className="px-[20px]">
       <section className="py-[200px] flex flex-col items-center">
@@ -16,59 +20,28 @@ export default function Page() {
 
         <div className="mt-20 w-full lg:w-[1000px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Cards */}
-            <div className="w-full">
-              <Image
-                src={"/assets/liquid/1.png"}
-                height={800}
-                width={800}
-                alt="Liquid project"
-                className="border rounded-xl h-[200px] w-full"
-              />
+            {studies.map((study) => (
+              <Link key={study.slug} href={`/studies/${study.slug}`}>
+                <div className="w-full">
+                  <Image
+                    src={"/assets/liquid/1.png"}
+                    height={800}
+                    width={800}
+                    alt="Liquid project"
+                    className="border rounded-xl h-[200px] w-full"
+                  />
 
-              <h6 className="mt-4 truncate">Title</h6>
+                  <h6 className="mt-4 truncate">{study.title}</h6>
 
-              <div className="mt-2 flex items-center gap-2">
-                <small>Case Study</small>
-                <small className="text-slate-400">January 24, 2025</small>
-              </div>
-            </div>
-
-            {/* Cards */}
-            <div className="w-full">
-              <Image
-                src={"/assets/liquid/1.png"}
-                height={800}
-                width={800}
-                alt="Liquid project"
-                className="border rounded-xl h-[200px] w-full"
-              />
-
-              <h6 className="mt-4 truncate">Title</h6>
-
-              <div className="mt-2 flex items-center gap-2">
-                <small>Case Study</small>
-                <small className="text-slate-400">January 24, 2025</small>
-              </div>
-            </div>
-
-            {/* Cards */}
-            <div className="w-full">
-              <Image
-                src={"/assets/liquid/1.png"}
-                height={800}
-                width={800}
-                alt="Liquid project"
-                className="border rounded-xl h-[200px] w-full"
-              />
-
-              <h6 className="mt-4 truncate">Title</h6>
-
-              <div className="mt-2 flex items-center gap-2">
-                <small>Case Study</small>
-                <small className="text-slate-400">January 24, 2025</small>
-              </div>
-            </div>
+                  <div className="mt-2 flex items-center gap-2">
+                    <small>{study.type}</small>
+                    <small className="text-slate-400">
+                      {study.date ? format(parseISO(study.date), "MMMM d, yyyy") : ""}
+                    </small>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
