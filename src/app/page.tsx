@@ -3,13 +3,17 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Brain, ChartLine, Puzzle } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { Brain, ChartLine, ChevronRight, Puzzle } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Pointer } from "@/components/ui/pointer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { Link as LinkIcon } from "lucide-react";
+import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Page() {
   return (
@@ -23,7 +27,7 @@ export default function Page() {
           <div className="grid grid-cols-4 lg:grid-cols-5 gap-10">
             <Image
               src="/assets/adnu.png"
-              alt="Edge Roleplay Logo"
+              alt="Ateneo de Naga University | John Bicierro"
               width={700}
               height={700}
               className="h-[40px] w-[40px] object-contain"
@@ -31,28 +35,28 @@ export default function Page() {
 
             <Image
               src="/assets/caceres.png"
-              alt="Edge Roleplay Logo"
+              alt="Archdiocese of Caceres | John Bicierro"
               width={700}
               height={700}
               className="h-[40px] w-[40px] object-contain"
             />
             <Image
               src="/assets/biscast.png"
-              alt="Edge Roleplay Logo"
+              alt="Biscat | John Bicierro"
               width={700}
               height={700}
               className="h-[40px] w-[40px] object-contain"
             />
             <Image
               src="/assets/codekada.png"
-              alt="Edge Roleplay Logo"
+              alt="Codekada | John Bicierro"
               width={700}
               height={700}
               className="h-[40px] w-[40px] object-contain"
             />
             <Image
               src="/assets/csguild.png"
-              alt="Edge Roleplay Logo"
+              alt="CS Guild | John Bicierro"
               width={700}
               height={700}
               className="h-[40px] w-[40px] object-contain"
@@ -67,26 +71,23 @@ export default function Page() {
 
       <About />
       <Process />
+
+      <Cases />
+
+      <Insights />
+
       <Projects />
 
-      {/* <section className="py-[200px] flex items-center justify-center">
-        <h1>
-          what people{" "}
-          <span className="inline-block transition-all hover:rotate-[5deg] shadow-2xl shadow-blue-500 text-white bg-blue-500 border border-blue-500 px-2">
-            say
-          </span>
-        </h1>
-      </section> */}
-
+      {/* Contact */}
       <section className="py-[200px] flex items-center justify-center">
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center gap-20">
-            <h1 className="text-center">
+            <h2 className="text-center">
               let&apos;s build something that{" "}
               <span className="font-pacifico tracking-wider text-blue-500">
                 works
               </span>
-            </h1>
+            </h2>
 
             <div className="w-full max-w-[600px] space-y-5">
               <div>
@@ -142,6 +143,77 @@ export default function Page() {
   );
 }
 
+function Insights() {
+  return (
+    <section className="py-[200px] flex flex-col items-center">
+      <h2>what building software continually teaches me</h2>
+
+      <div className="mt-20">insights</div>
+    </section>
+  );
+}
+
+const casesCards = [
+  {
+    image: "/assets/liquid/1.png",
+    alt: "Ateneo de Naga University | John Bicierro",
+    title: "From chaotic stock to real-time clarity",
+    type: "Case Study",
+    date: "January 17, 2024",
+  },
+  {
+    image: "/assets/liquid/2.png",
+    alt: "Ateneo de Naga University | John Bicierro",
+    title: "Turning data into actionable insights",
+    type: "Case Study",
+    date: "January 17, 2024",
+  },
+  {
+    image: "/assets/liquid/3.png",
+    alt: "Ateneo de Naga University | John Bicierro",
+    title: "Secure login without friction",
+    type: "Case Study",
+    date: "January 17, 2024",
+  },
+];
+
+function Cases() {
+  return (
+    <section className="py-[200px] flex flex-col items-center">
+      <h2>from messy requirements to clear, scalable architectures</h2>
+
+      <div className="mt-20 w-full lg:w-[1000px]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          {casesCards.map((card, idx) => (
+            <div key={idx} className="w-full">
+              <Image
+                src={card.image}
+                alt={card.alt}
+                width={1200}
+                height={1200}
+                className="border rounded-xl h-[350px] w-full"
+              />
+
+              <h6 className="mt-4 truncate">{card.title}</h6>
+
+              <div className="mt-2 flex items-center gap-2">
+                <small>{card.type}</small>
+                <small className="text-slate-400">{card.date}</small>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <Button variant={"link"} className="mt-10" asChild>
+        <Link href="/insights">
+          Explore Case Studies <ChevronRight />
+        </Link>
+      </Button>
+    </section>
+  );
+}
+
 const projectCards = [
   {
     small: "SHINRI",
@@ -155,12 +227,12 @@ const projectCards = [
       { label: "Database: Oracle", variant: "secondary" },
     ],
     image: "/assets/adnu.png",
-    alt: "Ateneo de Naga University Logo",
+    alt: "Ateneo de Naga University | John Bicierro",
   },
   {
     small: "Edge",
     title: "User Control Panel & Payment Gateway",
-    year: "2024",
+    year: "2025",
     description:
       "A circulation of the game server economy through a web platform.",
     badges: [
@@ -171,7 +243,7 @@ const projectCards = [
       { label: "Database: MySQL", variant: "secondary" },
     ],
     image: "/assets/edgerp.png",
-    alt: "Edge Roleplay Logo",
+    alt: "Edge Roleplay | John Bicierro",
   },
   {
     small: "Biomemes",
@@ -184,7 +256,7 @@ const projectCards = [
       { label: "Database: PostgreSQL", variant: "secondary" },
     ],
     image: "/assets/projects/biomemes.png",
-    alt: "Biomemes Logo",
+    alt: "Biomemes | John Bicierro",
   },
   {
     small: "National Youth Day",
@@ -197,78 +269,20 @@ const projectCards = [
       { label: "Database: PostgreSQL", variant: "secondary" },
     ],
     image: "/assets/projects/nyd.png",
-    alt: "National Youth Day Logo",
-  },
-  {
-    small: "Auro",
-    title: "Ticketing & External Services Integration",
-    year: "2025",
-    description:
-      "A ticketing system frontend and backend API designed to seamlessly fetch, manage, and integrate with external systems for efficient ticket handling.",
-    badges: [
-      { label: "Language: Javascript/Typescript", variant: "secondary" },
-      { label: "Framework: Next.js", variant: "secondary" },
-      { label: "Framework: Express.js", variant: "secondary" },
-      { label: "Database: PostgreSQL", variant: "secondary" },
-    ],
-    image: "/assets/projects/auro.png",
-    alt: "Auro Logo",
-  },
-  {
-    small: "Billang",
-    title: "Mobile Application Productivity Tool",
-    year: "2025",
-    description:
-      "An expense and bills management tracker with a touch of gamification.",
-    badges: [
-      { label: "Language: Javascript/Typescript", variant: "secondary" },
-      { label: "Framework: Expo", variant: "secondary" },
-      { label: "Database: SQLite", variant: "secondary" },
-    ],
-    image: "/assets/projects/billang.png",
-    alt: "Edge Roleplay Logo",
-  },
-  {
-    small: "Gupiro",
-    title: "Listing & Appointment System",
-    year: "2024",
-    description:
-      "A service business shop reservation system designed to streamline appointment bookings for businesses and their customers was built as a software service.",
-    badges: [
-      { label: "Language: Javascript/Typescript", variant: "secondary" },
-      { label: "Framework: Next.js", variant: "secondary" },
-      { label: "Database: PostgreSQL", variant: "secondary" },
-    ],
-    image: "/assets/projects/gupiro.png",
-    alt: "Gupiro Logo",
-  },
-  {
-    small: "Grexn",
-    title: "Product Research",
-    year: "2024",
-    description:
-      "A service business shop reservation system designed to streamline appointment bookings for businesses and their customers was built as a software service.",
-    badges: [
-      { label: "Software Documentation", variant: "secondary" },
-      { label: "Diagram Design", variant: "secondary" },
-      { label: "UI/UX Design", variant: "secondary" },
-    ],
-    image: "",
-    alt: "Edge Roleplay Logo",
+    alt: "National Youth Day | John Bicierro",
   },
 ];
 
 function Projects() {
   return (
     <section className="py-[200px] flex flex-col items-center">
-      <h1 className="text-center">
+      <h2 className="text-center">
         a few things i&apos;ve{" "}
         <span className="font-pacifico tracking-wider text-blue-500">
           worked
         </span>{" "}
         on
-      </h1>
-
+      </h2>
       {/* Cards */}
       <div className="mt-20">
         {[...projectCards]
@@ -284,10 +298,10 @@ function Projects() {
                   alt={card.alt}
                   width={600}
                   height={600}
-                  className="h-[40px] w-[40px] object-contain"
+                  className="rounded-full h-[40px] w-[40px] object-contain"
                 />
               ) : (
-                <div className="h-[40px] w-[40px] bg-zinc-800" />
+                <div className="rounded-full h-[40px] min-w-[40px] bg-zinc-800" />
               )}
 
               <div className="w-full space-y-2">
@@ -317,22 +331,26 @@ function Projects() {
             </div>
           ))}
       </div>
+
+      <Button variant={"link"} asChild>
+        <Link href="/projects" className="mt-10">
+          See more projects <ChevronRight />
+        </Link>
+      </Button>
     </section>
   );
 }
 
 function Process() {
   return (
-    <section className="py-[200px] flex flex-col items-center">
-      <Pointer className="fill-blue-500 hidden lg:block" />
-
-      <h1 className="text-center">
+    <section className="py-[200px] flex flex-col items-center ">
+      <h2 className="text-center">
         how i turn business needs into{" "}
         <span className="inline-block transition-all hover:rotate-[-5deg] shadow-2xl shadow-blue-500 text-white bg-blue-500 border border-blue-500 px-2">
           scalable
         </span>{" "}
         software
-      </h1>
+      </h2>
 
       <div className="mt-20 flex flex-col items-center gap-5">
         <Separator
@@ -349,9 +367,9 @@ function Process() {
           </div>
 
           <div className="text-center p-5 space-y-5">
-            <h2>
+            <h3>
               understand the <span className="text-blue-500">problem</span>
-            </h2>
+            </h3>
             <p className="text-slate-600 dark:text-slate-400">
               I start with the &quot;why&quot;, not just the feature list.
             </p>
@@ -371,11 +389,11 @@ function Process() {
           </div>
 
           <div className="p-5 space-y-5 text-center">
-            <h2>
+            <h3>
               plan for <span className="text-blue-500">scale</span>
-            </h2>
+            </h3>
             <p className="text-slate-600 dark:text-slate-400">
-              Architecture first — clean data flow, right tools, long-term
+              Architecture first, clean data flow, right tools, long-term
               thinking.
             </p>
           </div>
@@ -393,9 +411,9 @@ function Process() {
             <div className="animate-ping absolute bg-blue-500 h-[30px] w-[30px] rounded-full -z-10"></div>
           </div>
           <div className="p-5 space-y-5 text-center">
-            <h2>
+            <h3>
               design with <span className="text-blue-500">intent</span>
-            </h2>
+            </h3>
             <p className="text-slate-600 dark:text-slate-400">
               Interfaces that reduce friction and enhance flow.
             </p>
@@ -415,9 +433,9 @@ function Process() {
           </div>
 
           <div className="p-5 space-y-5 text-center">
-            <h2>
+            <h3>
               build <span className="text-blue-500">precisely</span>
-            </h2>
+            </h3>
             <p className="text-slate-600 dark:text-slate-400">
               Modular code, performance-focused, written to last.
             </p>
@@ -437,13 +455,17 @@ function Process() {
           </div>
 
           <div className="p-5 space-y-5 text-center">
-            <h2>
+            <h3>
               deliver & <span className=" text-blue-500">improve</span>
-            </h2>
+            </h3>
             <p className="text-slate-600 dark:text-slate-400">
               I ship fast, learn from feedback, and optimize continuously.
             </p>
-            <Button variant={"link"}>Learn More</Button>
+            <Button variant={"link"} asChild>
+              <Link href="/insights">
+                Learn More <ChevronRight />
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
@@ -475,7 +497,9 @@ function Hero() {
           Built to improve how businesses operate, not just how they look
         </p>
         <div className="flex gap-4">
-          <Button>View Case Studies</Button>
+          <Button asChild>
+            <Link href="/research">View Case Studies</Link>
+          </Button>
           <Button variant="secondary">Explore the Process</Button>
         </div>
       </div>
@@ -526,12 +550,12 @@ function About() {
   return (
     <>
       <section className="py-[200px] flex flex-col items-center justify-center gap-5">
-        <h1 className="text-center">
+        <h2 className="text-center">
           clarity in every{" "}
           <span className="font-pacifico tracking-wider text-blue-500">
             solution
           </span>
-        </h1>
+        </h2>
 
         <p className="text-slate-600 dark:text-slate-400 text-center max-w-[500px]">
           {meanings[selected as keyof typeof meanings]}
