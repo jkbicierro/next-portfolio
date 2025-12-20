@@ -1,19 +1,16 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { useMDXComponents } from "@/components/ui/mdx-components";
+import type { Metadata } from "next";
+import MDXRenderer from "@/components/mdx/mdx-renderer";
 
-interface Props {
-  params: { slug: string };
-}
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
 
-export async function generateMetadata({ params }: Props) {
-  const filePath = path.join(
-    process.cwd(),
-    "src/content/insights",
-    `${params.slug}.mdx`
-  );
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), "src/content/insights", `${slug}.mdx`);
   const file = fs.readFileSync(filePath, "utf8");
   const { data } = matter(file);
 
@@ -25,12 +22,9 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Post({ params }: Props) {
-  const filePath = path.join(
-    process.cwd(),
-    "src/content/insights",
-    `${params.slug}.mdx`
-  );
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params;
+  const filePath = path.join(process.cwd(), "src/content/insights", `${slug}.mdx`);
   const file = fs.readFileSync(filePath, "utf8");
   const { content } = matter(file);
 
@@ -38,7 +32,7 @@ export default async function Post({ params }: Props) {
     <>
       <section className="border py-[200px] flex justify-center">
         <div className="w-[650px] border">
-          <MDXRemote {...{ source: content, components: useMDXComponents() }} />
+          <MDXRenderer source={content} />
         </div>
       </section>
     </>
