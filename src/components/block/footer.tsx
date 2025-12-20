@@ -16,11 +16,11 @@ export default function Footer() {
   return (
     <footer className="px-[20px] py-[50px] mb-[25px] w-full flex justify-center">
       <div className="w-[1000px]">
-        <span className="block mb-5">Latest Work</span>
+        <span className="block mb-5 text-center lg:text-start">Latest Work</span>
         {/* Section 1 */}
         <div className="flex flex-col lg:flex-row text-center lg:text-start justify-between gap-10">
           {/* Case Studies */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center lg:items-start gap-2">
             <small className="flex gap-2 items-center">
               <BookOpen size={14} /> Case Studies ({studies.length})
             </small>
@@ -33,7 +33,7 @@ export default function Footer() {
             ))}
           </div>
           {/* Insights */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center lg:items-start gap-2">
             <small className="flex gap-2 items-center">
               <Lightbulb size={14} />
               Insights ({insights.length})
@@ -47,7 +47,7 @@ export default function Footer() {
             ))}
           </div>
           {/* Projects */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center lg:items-start gap-2">
             <small className="flex gap-2 items-center">
               <Folder size={14} />
               Projects ({projects.length})

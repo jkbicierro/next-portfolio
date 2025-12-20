@@ -1,6 +1,6 @@
 "use client";
 
-import { AtSign, FolderSearch, Home, CircleUser } from "lucide-react";
+import { Home, BookOpen, Lightbulb, Folder } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -9,9 +9,9 @@ import { ModeToggle } from "../buttons/mode-toggle";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home size={16} /> },
-  { name: "Case Studies", href: "/studies", icon: <FolderSearch size={16} /> },
-  { name: "Insights", href: "/insights", icon: <CircleUser size={16} /> },
-  { name: "Projects", href: "/projects", icon: <AtSign size={16} /> },
+  { name: "Case Studies", href: "/studies", icon: <BookOpen size={16} /> },
+  { name: "Insights", href: "/insights", icon: <Lightbulb size={16} /> },
+  { name: "Projects", href: "/projects", icon: <Folder size={16} /> },
 ];
 
 export function NavBar() {

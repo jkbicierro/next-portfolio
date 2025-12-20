@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <main className="px-[20px]">
       <section className="py-[200px] flex flex-col items-center">
-        <h2>see how i solve real problems and deliver results</h2>
+        <h2 className="text-center">see how i solve real problems and deliver results</h2>
 
         <div className="mt-20 w-full lg:w-[1000px]">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

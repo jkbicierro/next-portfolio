@@ -17,7 +17,7 @@ export default function Page() {
   return (
     <main className="px-[20px]">
       <section className="py-[200px] flex flex-col items-center">
-        <h2>projects i&apos;ve designed and built</h2>
+        <h2 className="text-center">projects i&apos;ve designed and built</h2>
 
         <div className="mt-20 w-full lg:w-[1000px]">
           <div className="flex flex-col">
@@ -45,9 +45,9 @@ export default function Page() {
                   </small>
                   <div className="flex justify-between items-center gap-5">
                     <h5>{project.title}</h5>
-                    <span className="text-slate-600 dark:text-slate-400">
+                    <small className="text-slate-600 dark:text-slate-400 text-nowrap">
                       {project.date ? format(parseISO(project.date), "MMMM d, yyyy") : ""}
-                    </span>
+                    </small>
                   </div>
 
                   <p className="max-w-[700px] text-slate-600 dark:text-slate-400">
