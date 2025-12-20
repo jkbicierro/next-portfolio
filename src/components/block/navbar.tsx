@@ -10,9 +10,9 @@ import { ModeToggle } from "../buttons/mode-toggle";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home size={16} /> },
-  { name: "Research", href: "/research", icon: <FolderSearch size={16} /> },
-  // { name: "About", href: "/about", icon: <CircleUser size={16} /> },
-  // { name: "Contact", href: "/contact", icon: <AtSign size={16} /> },
+  { name: "Case Studies", href: "/studies", icon: <FolderSearch size={16} /> },
+  { name: "Insights", href: "/insights", icon: <CircleUser size={16} /> },
+  { name: "Projects", href: "/projects", icon: <AtSign size={16} /> },
 ];
 
 export function NavBar() {
@@ -21,8 +21,8 @@ export function NavBar() {
 
   return (
     <>
-      <div className="hidden lg:block">
-        <nav className="z-[999] backdrop-filter backdrop-blur-md px-[30px] fixed h-[60px] w-full flex items-center justify-around">
+      <div className="">
+        <nav className="z-[999] backdrop-filter backdrop-blur-md px-[30px] fixed h-[60px] w-full flex items-center justify-between lg:justify-around">
           <div className="flex items-center gap-3">
             <div className="absolute mt-[18px] ml-[18px] z-50 border-2 border-background bg-yellow-500 rounded-full h-[10px] w-[10px]"></div>
             <Avatar className="w-[25px] h-[25px]">
@@ -30,31 +30,34 @@ export function NavBar() {
                 src="https://github.com/jkbicierro.png"
                 alt="John Bicierro"
               />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>JB</AvatarFallback>
             </Avatar>
 
             <span className="text-sm">John Bicierro</span>
           </div>
 
           <div className="flex items-center gap-8">
-            <ul className="text-zinc-400 flex gap-8 text-[12px] uppercase font-bold">
-              {navigation.map((item, index) => {
-                const isActive = pathname === item.href;
-                return (
-                  <Link key={index} href={item.href}>
-                    <li
-                      className={`${
-                        isActive
-                          ? "text-blue-500 border-b-2 border-blue-500"
-                          : "text-slate-500"
-                      }`}
-                    >
-                      {item.name}
-                    </li>
-                  </Link>
-                );
-              })}
-            </ul>
+            <div className="hidden lg:block">
+              <ul className="text-zinc-400 flex gap-8 text-[12px] uppercase font-bold">
+                {navigation.map((item, index) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link key={index} href={item.href}>
+                      <li
+                        className={`${
+                          isActive
+                            ? "text-blue-500 border-b-2 border-blue-500"
+                            : "text-slate-500"
+                        }`}
+                      >
+                        {item.name}
+                      </li>
+                    </Link>
+                  );
+                })}
+              </ul>
+            </div>
+
             <div className="flex gap-2">
               {/* <Button>
                 <Sparkles />
@@ -99,19 +102,6 @@ export function NavBar() {
             })}
           </ul>
         </nav>
-        <motion.div
-          id="scroll-indicator"
-          style={{
-            scaleX: scrollYProgress,
-            position: "fixed",
-            bottom: 50,
-            left: 0,
-            right: 0,
-            height: 2,
-            originX: 0,
-          }}
-          className="bg-blue-500 z-50"
-        />
       </div>
     </>
   );
