@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { data } = matter(file);
 
   return {
-    title: data.title + " - John Bicierro" || "Projects - John Bicierro",
+    title: data.title || "Projects",
     description:
       data.description ||
       "A collection of projects showcasing my work in web development, design, and technology. Explore case studies, insights, and innovative solutions I've crafted to solve real-world problems.",
