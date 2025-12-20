@@ -404,30 +404,35 @@ function Cases() {
       <div className="mt-20 w-full lg:w-[1000px]">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {studies.map((study) => (
-            <Link
-              href={`/studies/${study.slug}`}
-              key={study.slug}
-              className="w-full group"
-            >
-              <Image
-                src={"/assets/liquid/1.png"}
-                alt={study.title}
-                height={800}
-                width={800}
-                className="border rounded-xl h-[350px] w-full "
-              />
+            <article key={study.slug} className="w-full">
+              <Link
+                href={`/studies/${study.slug}`}
+                aria-label={`Case Study: ${study.title}`}
+                className="group"
+              >
+                <Image
+                  src={`/assets/liquid/3.png`}
+                  alt={study.title}
+                  height={800}
+                  width={800}
+                  className="border rounded-xl h-[350px] w-full "
+                />
 
-              <h6 className="mt-4 truncate group-hover:text-primary group-hover:underline">
-                {study.title}
-              </h6>
+                <h3 className="text-base mt-4 truncate group-hover:text-primary group-hover:underline">
+                  {study.title}
+                </h3>
 
-              <div className="mt-2 flex items-center gap-2">
-                <small>{study.type}</small>
-                <small className="text-slate-400">
-                  {study.date ? format(parseISO(study.date), "MMMM d, yyyy") : ""}
-                </small>
-              </div>
-            </Link>
+                <div className="mt-2 flex items-center gap-2">
+                  <small>{study.type}</small>
+                  <time
+                    dateTime={study.date}
+                    className="text-sm text-slate-600 dark:text-slate-400"
+                  >
+                    {study.date ? format(parseISO(study.date), "MMMM d, yyyy") : ""}
+                  </time>
+                </div>
+              </Link>
+            </article>
           ))}
         </div>
       </div>
