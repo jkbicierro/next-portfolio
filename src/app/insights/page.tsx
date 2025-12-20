@@ -5,9 +5,9 @@ import { format, parseISO } from "date-fns";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Insights - John Bicierro",
+  title: "Insights",
   description:
-    "A collection of insightful articles and blog posts by John Bicierro, sharing knowledge and experiences.",
+    "Delve into John Bicierro's insights, featuring articles on software development, design, and industry trends.",
 };
 
 export default function Page() {
