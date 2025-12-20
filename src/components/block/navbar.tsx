@@ -1,8 +1,7 @@
 "use client";
 
-import { AtSign, FolderSearch, Home, Sparkles, CircleUser } from "lucide-react";
+import { AtSign, FolderSearch, Home, CircleUser } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, useScroll } from "motion/react";
@@ -26,10 +25,7 @@ export function NavBar() {
           <div className="flex items-center gap-3">
             <div className="absolute mt-[18px] ml-[18px] z-50 border-2 border-background bg-yellow-500 rounded-full h-[10px] w-[10px]"></div>
             <Avatar className="w-[25px] h-[25px]">
-              <AvatarImage
-                src="https://github.com/jkbicierro.png"
-                alt="John Bicierro"
-              />
+              <AvatarImage src="https://github.com/jkbicierro.png" alt="John Bicierro" />
               <AvatarFallback>JB</AvatarFallback>
             </Avatar>
 
