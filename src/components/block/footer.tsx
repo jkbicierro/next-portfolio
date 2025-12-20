@@ -20,18 +20,19 @@ export default function Footer() {
         {/* Section 1 */}
         <div className="flex flex-col lg:flex-row text-center lg:text-start justify-between gap-10">
           {/* Case Studies */}
-          <div className="flex flex-col items-center lg:items-start gap-2">
+          <ul className="flex flex-col items-center lg:items-start gap-2">
             <small className="flex gap-2 items-center">
               <BookOpen size={14} /> Case Studies ({studies.length})
             </small>
             {studies.map((study) => (
-              <Link key={study.slug} href={`/studies/${study.slug}`}>
-                <div className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs ">
-                  {study.title}
-                </div>
-              </Link>
+              <li
+                key={study.slug}
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
+              >
+                <Link href={`/studies/${study.slug}`}>{study.title}</Link>
+              </li>
             ))}
-          </div>
+          </ul>
           {/* Insights */}
           <div className="flex flex-col items-center lg:items-start gap-2">
             <small className="flex gap-2 items-center">
@@ -39,11 +40,12 @@ export default function Footer() {
               Insights ({insights.length})
             </small>
             {insights.map((insight) => (
-              <Link key={insight.slug} href={`/insights/${insight.slug}`}>
-                <div className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs ">
-                  {insight.title}
-                </div>
-              </Link>
+              <div
+                key={insight.slug}
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs "
+              >
+                <Link href={`/insights/${insight.slug}`}>{insight.title}</Link>
+              </div>
             ))}
           </div>
           {/* Projects */}
@@ -53,11 +55,12 @@ export default function Footer() {
               Projects ({projects.length})
             </small>
             {projects.map((project) => (
-              <Link key={project.slug} href={`/projects/${project.slug}`}>
-                <div className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs">
-                  {project.title}
-                </div>
-              </Link>
+              <div
+                key={project.slug}
+                className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
+              >
+                <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+              </div>
             ))}
           </div>
         </div>
