@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="py-[50px] w-full flex justify-center">
+    <footer className="px-[20px] py-[50px] w-full flex justify-center">
       <div className="w-[1000px]">
         <div className="flex justify-between">
           <Avatar className="w-[25px] h-[25px]">
