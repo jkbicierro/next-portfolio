@@ -1,0 +1,76 @@
+---
+title: "SaaS Dashboard Redesign"
+description: "Improving UX & performance"
+date: "2025-01-10"
+---
+
+Redesigning a high-usage SaaS analytics dashboard to improve clarity and speed. The focus: a faster path to insights, cleaner information architecture, and measurable performance gains without sacrificing depth.
+
+## Goals
+
+- Reduce time-to-insight for power users navigating multi-tenant data.
+- Simplify navigation and surface the right defaults for common tasks.
+- Improve perceived performance and real metrics on critical views.
+
+## UX Improvements
+
+- Information architecture: consolidated fragmented views into Overview, Explore, Alerts.
+- Visual hierarchy: consistent heading scale, emphasis on trend vs. totals, sparing use of color.
+- Density tuning: adjustable row density; defaults optimized for 13–14" laptops.
+- Empty states and guardrails: clear states with guidance and sample queries.
+- Keyboard reachability: quick actions and global search via `cmd/ctrl + k`.
+
+## Performance Wins
+
+| Metric                 | Before |  After | Delta |
+| ---------------------- | -----: | -----: | ----: |
+| LCP (p75)              |   3.4s |   1.9s |  -44% |
+| TTI (dashboard)        |   2.6s |   1.6s |  -38% |
+| JS shipped (initial)   | 310 KB | 168 KB |  -46% |
+| API requests (on load) |      9 |      5 |  -44% |
+
+How we got there:
+
+- Charting isolated behind dynamic boundaries; only critical KPIs hydrate.
+- Server Components for data shaping; charts stream inside Suspense.
+- Route-level caching + revalidation for common queries.
+- Image/asset budgets and `next/font` for predictable layout.
+
+### Example: Lazy‑loading heavy charts
+
+```tsx
+import dynamic from "next/dynamic";
+
+// Avoids loading the charting library on initial paint
+const RevenueChart = dynamic(() => import("@/components/charts/revenue"), {
+  ssr: false,
+  loading: () => <div className="h-48 rounded-md bg-muted animate-pulse" />,
+});
+
+export function RevenueSection() {
+  return (
+    <section className="space-y-3">
+      <h3 className="text-xl font-medium">Revenue trend</h3>
+      <RevenueChart />
+    </section>
+  );
+}
+```
+
+## Checklist
+
+- [x] Consolidate navigation and IA
+- [x] Introduce streaming KPI sections
+- [x] Replace blocking charts with dynamic imports
+- [x] Add skeletons and optimistic transitions
+- [x] Tighten color, spacing, and type scales
+- [ ] A/B test card density presets
+- [ ] Expand keyboard shortcuts to filters
+
+> Result: stakeholders report faster onboarding, fewer “where is X?” questions, and reduced dashboard abandonment during peak hours.
+
+## What’s next
+
+- Expand anomaly detection to Alerts with explainers.
+- Ship saved views with shareable, signed URLs.
+- Continue trimming JS with lighter chart primitives on mobile.
