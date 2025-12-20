@@ -6,9 +6,9 @@ import Image from "next/image";
 import { format, parseISO } from "date-fns";
 
 export const metadata: Metadata = {
-  title: "Projects - John Bicierro",
+  title: "Projects",
   description:
-    "A showcase of projects developed by John Bicierro, highlighting skills and expertise.",
+    "Discover John Bicierro's diverse projects, highlighting his skills and creativity in software development.",
 };
 
 export default function Page() {
