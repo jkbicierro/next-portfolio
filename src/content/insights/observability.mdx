@@ -1,0 +1,130 @@
+---
+title: "Monitoring & Observability From Day One"
+description: "Metrics, logs, traces: the three pillars of production confidence"
+date: "2025-03-17"
+---
+
+Building observability into your system from inception, not bolted on later. Metrics, logs, and traces—the three pillars—give you visibility into what's happening in production.
+
+## The Three Pillars
+
+### 1. Metrics (Numbers Over Time)
+
+Quantify system health: latency, error rates, throughput, resource usage.
+
+```typescript
+import { metrics } from "@/lib/metrics";
+
+export async function handleRequest(req: Request) {
+  const start = Date.now();
+
+  try {
+    const result = await processRequest(req);
+
+    // Track success
+    metrics.counter("request.success", 1, {
+      method: req.method,
+      path: req.url,
+    });
+
+    metrics.histogram("request.duration_ms", Date.now() - start, {
+      status: "success",
+    });
+
+    return result;
+  } catch (error) {
+    metrics.counter("request.error", 1, {
+      error_type: error.code,
+    });
+    throw error;
+  }
+}
+```
+
+### 2. Logs (Events and Context)
+
+Structured logs with context; not just strings.
+
+```typescript
+import { logger } from "@/lib/logger";
+
+export async function processPayment(paymentId: string) {
+  logger.info("payment_processing_started", {
+    payment_id: paymentId,
+    timestamp: new Date().toISOString(),
+  });
+
+  try {
+    const result = await chargeCard(paymentId);
+    logger.info("payment_succeeded", {
+      payment_id: paymentId,
+      amount: result.amount,
+      gateway_id: result.gateway_transaction_id,
+    });
+  } catch (error) {
+    logger.error("payment_failed", {
+      payment_id: paymentId,
+      error_code: error.code,
+      error_message: error.message,
+      retry_available: error.retryable,
+    });
+  }
+}
+```
+
+### 3. Traces (Request Journeys)
+
+Follow a request through your entire system.
+
+```typescript
+import { trace } from "@/lib/tracing";
+
+export async function createOrder(userId: string, items: Item[]) {
+  return trace.startSpan("order.create", async (span) => {
+    span.setAttribute("user_id", userId);
+    span.setAttribute("item_count", items.length);
+
+    // Trace database call
+    const order = await trace.startSpan("db.insert", async () => {
+      return db.orders.create({ userId, items });
+    });
+
+    // Trace external API call
+    const confirmation = await trace.startSpan("email.send", async () => {
+      return emailService.sendConfirmation(order);
+    });
+
+    return { order, confirmation };
+  });
+}
+```
+
+## Observability Checklist
+
+- [x] Instrument all database queries with duration metrics.
+- [x] Log all errors with full stack traces and context.
+- [x] Track business metrics (signups, conversions, revenue).
+- [x] Set up alerts on SLO violations (latency, error rate).
+- [x] Trace critical paths (payment, auth, data pipeline).
+- [ ] Build custom dashboards for on-call engineers.
+- [ ] Implement automated incident detection.
+
+## Popular Stacks
+
+| Component | Option 1   | Option 2    |
+| --------- | ---------- | ----------- |
+| Metrics   | Prometheus | CloudWatch  |
+| Logs      | ELK Stack  | Datadog     |
+| Traces    | Jaeger     | Datadog APM |
+
+## Results
+
+- MTTR (mean time to recovery): 45 min → 8 min.
+- Bugs caught in staging: +65%.
+- On-call fatigue: fewer false alarms with smart alerting.
+- Production incidents: 40% fewer surprises.
+
+## Next
+
+- Implement synthetic monitoring (fake user traffic).
+- Build BI dashboards for product metrics.

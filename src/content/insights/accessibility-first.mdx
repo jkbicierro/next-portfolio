@@ -1,0 +1,73 @@
+---
+title: "Accessibility as a Core Feature, Not an Afterthought"
+description: "WCAG 2.1 AA compliance and why it matters for business"
+date: "2025-02-01"
+---
+
+Baking accessibility into every design and engineering decision from day one. Not only the right thing to do—it's a business multiplier: larger audience, better SEO, reduced legal risk, and happier teams.
+
+## Why Accessibility Matters
+
+- 1 in 4 adults have a disability affecting web use (CDC).
+- 70% of accessibility issues are fixable by developers at minimal cost.
+- WCAG 2.1 AA compliance correlates with higher conversion and retention.
+- Legal pressure increasing: 3,000+ accessibility lawsuits filed in 2023 alone.
+
+## Core Pillars
+
+### 1. Semantic HTML
+
+```html
+<!-- ❌ Bad: div soup -->
+<div onclick="navigate('/about')">About</div>
+
+<!-- ✅ Good: semantic, keyboard-navigable, screen-reader friendly -->
+<a href="/about">About</a>
+
+<!-- ✅ Good: button with ARIA role if needed -->
+<button type="button" aria-label="Close menu">
+  <span aria-hidden="true">&times;</span>
+</button>
+```
+
+### 2. Color & Contrast
+
+- Text: minimum 4.5:1 contrast (normal text), 3:1 (large text).
+- Interactive: 3:1 contrast for UI components and graphical elements.
+- Never rely on color alone to convey information.
+
+### 3. Keyboard Navigation
+
+- All interactive elements reachable via Tab and Enter.
+- Focus management in modals: trap focus inside, return on close.
+- Skip links for keyboard users to bypass repetitive content.
+
+### 4. Screen Reader Testing
+
+- Test with NVDA (Windows), JAWS, or VoiceOver (Mac).
+- Describe images with meaningful `alt` text; skip decorative images.
+- Announce dynamic content changes with ARIA live regions.
+
+## Checklist
+
+- [x] Audit codebase with axe or Lighthouse.
+- [x] Add skip links to every page layout.
+- [x] Test keyboard navigation on critical flows.
+- [x] Ensure focus ring is visible (4px min, good contrast).
+- [x] Add ARIA labels to icon-only buttons.
+- [ ] Expand screen reader testing to all major products.
+- [ ] Train team on accessible component patterns.
+
+## Tools & Resources
+
+- axe DevTools: browser extension for automated a11y checks.
+- WebAIM: reference and testing guidelines.
+- Accessible color palette generator: use tools like Accessible Colors.
+
+> Outcome: 15% increase in audience reach, zero accessibility complaints in Q1, and a team that's proud to ship inclusive products.
+
+## Next Phase
+
+- Implement WCAG 2.1 AAA for critical user paths.
+- Build accessible component library with Storybook stories for every a11y state.
+- Partner with disability advocates for user testing.

@@ -1,0 +1,117 @@
+---
+title: "Testing Strategy: From Unit to E2E"
+description: "Cost-effective testing pyramid for production confidence"
+date: "2025-02-18"
+---
+
+A pragmatic approach to testing that balances speed, coverage, and maintenance burden. Ship faster without sacrificing quality by testing the right things at the right layer.
+
+## The Testing Pyramid
+
+```
+        E2E (slow, expensive, high-value)
+       /          \
+      /            \
+     / Integration  \
+    /   (moderate)   \
+   /___________________\
+   Unit (fast, cheap)
+```
+
+## Layer 1: Unit Tests (70%)
+
+Fast feedback loop. Test pure functions, hooks, utilities in isolation.
+
+```typescript
+import { sum, average } from "@/lib/math";
+
+describe("sum", () => {
+  it("adds numbers correctly", () => {
+    expect(sum([1, 2, 3])).toBe(6);
+  });
+
+  it("handles empty arrays", () => {
+    expect(sum([])).toBe(0);
+  });
+});
+
+describe("average", () => {
+  it("calculates mean", () => {
+    expect(average([10, 20, 30])).toBe(20);
+  });
+});
+```
+
+Benefits: Run in milliseconds, catch regressions early, safe to refactor.
+
+## Layer 2: Integration Tests (20%)
+
+Test components and services working together. Mock external APIs, databases.
+
+```typescript
+import { render, screen } from "@testing-library/react";
+import { UserProfile } from "@/components/user-profile";
+
+describe("UserProfile", () => {
+  it("fetches and displays user data", async () => {
+    render(<UserProfile userId="123" />);
+    expect(await screen.findByText("John Doe")).toBeInTheDocument();
+  });
+
+  it("shows error on fetch failure", async () => {
+    // Mock API to return error
+    render(<UserProfile userId="invalid" />);
+    expect(await screen.findByText(/failed to load/i)).toBeInTheDocument();
+  });
+});
+```
+
+Benefits: Catches real bugs without full E2E overhead, integrates components realistically.
+
+## Layer 3: E2E Tests (10%)
+
+Real browser, real backend. Test critical user journeys.
+
+```typescript
+import { test, expect } from "@playwright/test";
+
+test("user can sign up and view dashboard", async ({ page }) => {
+  await page.goto("https://app.example.com/signup");
+  await page.fill('input[name="email"]', "test@example.com");
+  await page.fill('input[name="password"]', "SecurePass123!");
+  await page.click("button:has-text('Sign Up')");
+
+  await expect(page).toHaveURL(/\/dashboard/);
+  await expect(page.locator("h1")).toContainText("Welcome");
+});
+```
+
+Benefits: Confidence for production; catches bugs unit tests miss.
+
+## Best Practices
+
+- [x] Aim for 80% unit, 15% integration, 5% E2E coverage.
+- [x] Run unit tests pre-commit; integration on push.
+- [x] Run E2E on staging before production deploy.
+- [x] Name tests as "given X, when Y, then Z".
+- [x] Avoid testing implementation details; test behavior.
+- [ ] Add visual regression testing for design changes.
+- [ ] Expand E2E to cover accessibility workflows.
+
+## Tools
+
+- **Unit & Integration**: Vitest, Jest, React Testing Library.
+- **E2E**: Playwright, Cypress.
+- **Visual**: Percy, Chromatic.
+
+## Results
+
+- Bug escape rate (bugs found in production): 12% → 2%.
+- Refactoring confidence: PRs merged faster; fewer regressions.
+- Onboarding time for new engineers: tests serve as living documentation.
+
+## Next
+
+- Implement snapshot testing for UI components.
+- Add performance benchmarks to unit tests.
+- Build mutation testing to ensure test quality.

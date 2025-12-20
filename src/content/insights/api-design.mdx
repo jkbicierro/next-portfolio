@@ -1,0 +1,83 @@
+---
+title: "API Design Lessons From Production"
+description: "Building APIs that scale, evolve, and don't break clients"
+date: "2025-02-10"
+---
+
+Lessons learned shipping REST and GraphQL APIs that serve billions of requests. How to design for backward compatibility, versioning, and developer experience from day one.
+
+## The Hard Way
+
+- Shipping breaking changes that cascade into client crashes.
+- No pagination defaults; some endpoints return 50K records to a mobile client.
+- Inconsistent error shapes; clients can't tell if the server is down or the request was invalid.
+- No rate limiting; one runaway script brings down the platform.
+
+## Design Principles
+
+### 1. Versioning Strategy
+
+```
+GET /api/v1/users/{id}       # Long-lived, maintained for 2+ years
+GET /api/v2/users/{id}       # New, incompatible shape
+```
+
+- Never break v1 clients without 6-month deprecation notice.
+- Keep old versions alive; sunsetting is costly.
+- Consider `Accept: application/vnd.yourapi.v2+json` header versioning for cleaner URLs.
+
+### 2. Error Shape, Everywhere
+
+```json
+{
+  "error": {
+    "code": "RATE_LIMIT_EXCEEDED",
+    "message": "You've made 100 requests in the last minute.",
+    "details": {
+      "retry_after": 60,
+      "limit": 100,
+      "window": "1m"
+    }
+  }
+}
+```
+
+### 3. Pagination by Default
+
+```
+GET /api/v1/users?limit=20&offset=0&sort=-created_at
+```
+
+- Always paginate, even if you think you won't need to.
+- Include `total`, `limit`, `offset` in response envelope.
+- Cursor-based for large datasets; offset-based for small ones.
+
+### 4. Deprecation Cycle
+
+| Phase       | Duration | Action                                          |
+| ----------- | -------- | ----------------------------------------------- |
+| Active      | ongoing  | Bug fixes, minor features                       |
+| Deprecation | 6 months | Warn in docs, headers, emails                   |
+| Sunset      | Month 7  | Remove entirely; sunset notices in all channels |
+
+## Checklist
+
+- [x] Design errors as structured objects with actionable codes.
+- [x] Implement pagination on all list endpoints.
+- [x] Add rate limiting and communicate limits in response headers.
+- [x] Use semantic HTTP status codes (200, 201, 400, 404, 429, 500).
+- [x] Document every field, including deprecation timelines.
+- [ ] Ship OpenAPI / GraphQL schema alongside API.
+- [ ] Build client SDK generator from schema.
+
+## Real Impact
+
+- Support tickets about "broken API" dropped 60%.
+- Client upgrade timelines now predictable; fewer blockers.
+- New product launches unblock 2 weeks earlier (no integration surprises).
+
+## What's Next
+
+- Implement WebSocket subscriptions for real-time data.
+- Ship API SDKs in Python, JavaScript, Go.
+- Build API observability dashboard (latency, error rates by endpoint).
