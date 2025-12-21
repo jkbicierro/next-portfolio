@@ -15,7 +15,7 @@ export default function Page() {
   const studies = getAllStudies();
   return (
     <main className="px-[20px]">
-      <section className="py-[200px] flex flex-col items-center">
+      <section className="py-[100px] flex flex-col items-center">
         <h2 className="text-center">see how i solve real problems and deliver results</h2>
 
         <div className="mt-20 w-full lg:w-[1000px]">
