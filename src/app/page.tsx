@@ -35,7 +35,7 @@ export default async function Page() {
       <Projects projects={projects} />
 
       {/* Contact */}
-      <section className="py-[200px] flex items-center justify-center">
+      <section className="py-[100px] flex items-center justify-center">
         <div className="flex items-center justify-center">
           <div className="flex flex-col items-center gap-20">
             <h2 className="text-center">
@@ -153,7 +153,7 @@ function Logos() {
 
 function Insights({ insights }: { insights: ReturnType<typeof getAllInsights> }) {
   return (
-    <section className="py-[200px] flex flex-col items-center">
+    <section className="py-[100px] flex flex-col items-center">
       <h2 className="text-center">what building software continually teaches me</h2>
 
       <div className="mt-20 grid grid-cols-1 gap-10">
@@ -188,7 +188,7 @@ function Insights({ insights }: { insights: ReturnType<typeof getAllInsights> })
 
 function Process() {
   return (
-    <section className="py-[200px] flex flex-col items-center ">
+    <section className="py-[100px] flex flex-col items-center ">
       <h2 className="text-center">
         how i turn business needs into{" "}
         <span className="inline-block transition-all hover:rotate-[-5deg] shadow-2xl shadow-blue-500 text-white bg-blue-500 border border-blue-500 px-2">
@@ -307,7 +307,7 @@ function Process() {
 
 function Hero() {
   return (
-    <section className="py-[200px] flex items-center justify-center">
+    <section className="py-[100px] flex items-center justify-center">
       <div className="w-[650px] flex flex-col items-center text-center justify-center gap-5">
         <h1 className="font-medium space-y-5 text-nowrap">
           <div className="flex gap-2 items-center justify-center">
@@ -341,7 +341,7 @@ function Hero() {
 
 function Projects({ projects }: { projects: ReturnType<typeof getAllProjects> }) {
   return (
-    <section className="py-[200px] flex flex-col items-center">
+    <section className="py-[100px] flex flex-col items-center">
       <h2 className="text-center">
         a few things i&apos;ve{" "}
         <span className="font-pacifico tracking-wider text-blue-500">worked</span> on
@@ -398,7 +398,7 @@ function Projects({ projects }: { projects: ReturnType<typeof getAllProjects> })
 
 function Cases({ studies }: { studies: ReturnType<typeof getAllStudies> }) {
   return (
-    <section className="py-[200px] flex flex-col items-center">
+    <section className="py-[100px] flex flex-col items-center">
       <h2 className="text-center">
         from messy requirements to clear, scalable architectures
       </h2>
