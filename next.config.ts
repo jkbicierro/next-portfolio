@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 
 const nextConfig = {
   images: {
-    domains: ["cdn.dribbble.com", "mockuuups.studio"],
+    domains: ["github.com"],
   },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   experimental: {
