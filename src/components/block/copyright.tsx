@@ -8,13 +8,10 @@ export default function Copyright() {
     <div className="hidden lg:block">
       <span className="flex gap-2 items-center fixed z-50 bottom-3 left-3 text-slate-500 text-xs">
         <Avatar className="w-[12px] h-[12px]">
-          <AvatarImage
-            src="https://github.com/jkbicierro.png"
-            alt="John Bicierro"
-          />
+          <AvatarImage src="https://github.com/jkbicierro.png" alt="John Bicierro" />
           <AvatarFallback>JB</AvatarFallback>
         </Avatar>
-        Crafted from Scratch &copy; 2025 John Bicierro
+        jkbicierro.com &copy; 2025 Crafted by John Bicierro
       </span>
     </div>
   );
