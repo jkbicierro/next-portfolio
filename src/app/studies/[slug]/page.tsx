@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import type { Metadata } from "next";
 import MDXRenderer from "@/components/mdx/mdx-renderer";
 import { notFound } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -29,12 +30,30 @@ export default async function Page({ params }: PageProps) {
 
   try {
     const file = fs.readFileSync(filePath, "utf8");
-    const { content } = matter(file);
+    const { content, data } = matter(file);
 
     return (
       <>
-        <section className="border py-[200px] flex justify-center">
-          <div className="w-[650px] border">
+        <section className="py-[200px] flex flex-col items-center ">
+          <div className="flex flex-col gap-3">
+            {/* Header */}
+            <div className="flex gap-3 items-center">
+              <Avatar className="w-[25px] h-[25px]">
+                <AvatarImage
+                  src="https://github.com/jkbicierro.png"
+                  alt="John Bicierro"
+                />
+                <AvatarFallback>JB</AvatarFallback>
+              </Avatar>
+              <span className="text-sm">John Bicierro</span>
+            </div>
+
+            <h2>{data.title}</h2>
+            <p>{data.description}</p>
+            <small className="uppercase text-xs">{data.type} · 12 mins read</small>
+          </div>
+
+          <div className="mt-20">
             <MDXRenderer source={content} />
           </div>
         </section>
