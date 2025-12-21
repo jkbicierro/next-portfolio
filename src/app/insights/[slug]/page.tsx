@@ -4,6 +4,12 @@ import matter from "gray-matter";
 import type { Metadata } from "next";
 import MDXRenderer from "@/components/mdx/mdx-renderer";
 import { notFound } from "next/navigation";
+import { ChevronLeft, Share } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { format, parseISO } from "date-fns";
+import readingTime from "reading-time";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -29,16 +35,60 @@ export default async function Page({ params }: PageProps) {
 
   try {
     const file = fs.readFileSync(filePath, "utf8");
-    const { content } = matter(file);
+    const { content, data } = matter(file);
+    const timeRead = readingTime(content);
 
     return (
-      <>
-        <section className="py-[200px] flex justify-center">
+      <main className="px-[20px]">
+        <section className="py-[100px] flex flex-col items-center">
           <div className="w-[1000px]">
-            <MDXRenderer source={content} />
+            <div className="flex flex-col items-start gap-3">
+              {/* Button */}
+              <div className="w-full flex justify-between">
+                <Button variant="link" className="mb-5 flex items-center p-0" asChild>
+                  <Link href="/insights">
+                    <ChevronLeft size={16} />
+                    Back to insights
+                  </Link>
+                </Button>
+                <Button variant={"outline"}>
+                  <Share size={16} /> Share "{data.title}"
+                </Button>
+              </div>
+
+              {/* Header */}
+              <div className="mb-5 flex gap-3 items-center">
+                <Avatar className="w-[25px] h-[25px]">
+                  <AvatarImage
+                    src="https://github.com/jkbicierro.png"
+                    alt="John Bicierro"
+                  />
+                  <AvatarFallback>JB</AvatarFallback>
+                </Avatar>
+                <span className="text-sm">John Bicierro</span>
+              </div>
+
+              {/* Stats */}
+              <time
+                dateTime={data.date}
+                className="text-slate-600 dark:text-slate-400 uppercase text-xs"
+              >
+                {data.date ? format(parseISO(data.date), "MMMM d, yyyy") : ""}
+              </time>
+              <h2>{data.title}</h2>
+              <p className="text-slate-600 dark:text-slate-400">{data.description}</p>
+              <small className="text-slate-600 dark:text-slate-400 uppercase text-xs">
+                {data.type} · {timeRead.text}
+              </small>
+            </div>
+
+            {/* Content */}
+            <div className="mt-10">
+              <MDXRenderer source={content} />
+            </div>
           </div>
         </section>
-      </>
+      </main>
     );
   } catch {
     return notFound();
