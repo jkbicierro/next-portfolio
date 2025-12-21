@@ -35,7 +35,7 @@ export default function Page() {
 
                   <div className="mt-2 flex items-center gap-2">
                     <small>{study.type}</small>
-                    <small className="text-slate-400">
+                    <small className="text-slate-600 dark:text-slate-400">
                       {study.date ? format(parseISO(study.date), "MMMM d, yyyy") : ""}
                     </small>
                   </div>
