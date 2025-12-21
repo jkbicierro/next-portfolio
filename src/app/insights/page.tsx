@@ -14,7 +14,7 @@ export default function Page() {
   const insights = getAllInsights();
   return (
     <main className="px-[20px]">
-      <section className="py-[200px] flex flex-col items-center">
+      <section className="py-[100px] flex flex-col items-center">
         <h2 className="text-center">
           i share my strategies, learnings, and practical approaches
         </h2>
