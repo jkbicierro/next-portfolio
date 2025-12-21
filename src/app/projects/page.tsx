@@ -46,7 +46,7 @@ export default function Page() {
                   <div className="flex justify-between items-center gap-5">
                     <h5>{project.title}</h5>
                     <small className="text-slate-600 dark:text-slate-400 text-nowrap">
-                      {project.date ? format(parseISO(project.date), "MMMM d, yyyy") : ""}
+                      {project.date ? format(parseISO(project.date), "MMMM, yyyy") : ""}
                     </small>
                   </div>
 
