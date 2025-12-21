@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <main className="px-[20px]">
-      <section className="py-[200px] flex flex-col items-center">
+      <section className="py-[100px] flex flex-col items-center">
         <h2 className="text-center">projects i&apos;ve designed and built</h2>
 
         <div className="mt-20 w-full lg:w-[1000px]">
