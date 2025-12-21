@@ -13,16 +13,22 @@ export default async function Footer() {
   const studies = getAllStudies().slice(0, contentLimit);
   const projects = getAllProjects().slice(0, contentLimit);
 
+  const insightsCount = getAllInsights().length;
+  const studiesCount = getAllStudies().length;
+  const projectsCount = getAllProjects().length;
+
   return (
     <footer className="px-[20px] py-[50px] mb-[25px] w-full flex justify-center">
       <div className="w-[1000px]">
-        <span className="block mb-5 text-center lg:text-start">Latest Work</span>
+        <span className="block mb-5 text-center lg:text-start">
+          My latest case studies, insights, and projects
+        </span>
         {/* Section 1 */}
         <div className="flex flex-col lg:flex-row text-center lg:text-start justify-between gap-10">
           {/* Case Studies */}
-          <div className="space-y-2">
+          <div className="space-y-2 flex flex-col items-center lg:items-start">
             <small className="flex gap-2 items-center">
-              <BookOpen size={14} /> Case Studies ({studies.length})
+              <BookOpen size={14} /> Case Studies ({studiesCount})
             </small>
             <ul className="flex flex-col items-center lg:items-start gap-2">
               {studies.map((study) => (
@@ -37,39 +43,39 @@ export default async function Footer() {
           </div>
 
           {/* Insights */}
-          <div className="space-y-2">
+          <div className="space-y-2 flex flex-col items-center lg:items-start">
             <small className="flex gap-2 items-center">
               <Lightbulb size={14} />
-              Insights ({insights.length})
+              Insights ({insightsCount})
             </small>
-            <div className="flex flex-col items-center lg:items-start gap-2">
+            <ul className="flex flex-col items-center lg:items-start gap-2">
               {insights.map((insight) => (
-                <div
+                <li
                   key={insight.slug}
                   className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs "
                 >
                   <Link href={`/insights/${insight.slug}`}>{insight.title}</Link>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* Projects */}
-          <div className="space-y-2">
+          <div className="space-y-2 flex flex-col items-center lg:items-start">
             <small className="flex gap-2 items-center">
               <Folder size={14} />
-              Projects ({projects.length})
+              Projects ({projectsCount})
             </small>
-            <div className="flex flex-col items-center lg:items-start gap-2">
+            <ul className="flex flex-col items-center lg:items-start gap-2">
               {projects.map((project) => (
-                <div
+                <li
                   key={project.slug}
                   className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 truncate text-xs"
                 >
                   <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
 
