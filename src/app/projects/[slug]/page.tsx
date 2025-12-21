@@ -52,7 +52,7 @@ export default async function Page({ params }: PageProps) {
                   </Link>
                 </Button>
                 <Button variant={"outline"}>
-                  <Share size={16} /> Share "{data.title}"
+                  <Share size={16} /> Share &quot;{data.title}&quot;
                 </Button>
               </div>
 
