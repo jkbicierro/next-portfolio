@@ -22,14 +22,15 @@ export function NavBar() {
     <>
       {/* style:lg */}
       <nav className="z-[999] backdrop-filter backdrop-blur-md px-[30px] fixed h-[60px] w-full flex items-center justify-between lg:justify-around">
-        <div className="flex items-center gap-3">
-          <div className="absolute mt-[18px] ml-[18px] z-50 border-2 border-background bg-yellow-500 rounded-full h-[10px] w-[10px]"></div>
-          <Avatar className="w-[25px] h-[25px]">
-            <AvatarImage src="https://github.com/jkbicierro.png" alt="John Bicierro" />
-            <AvatarFallback>JB</AvatarFallback>
-          </Avatar>
-
-          <span className="text-sm">John Bicierro</span>
+        <div>
+          <Link href="/" className="flex items-center gap-3">
+            <div className="absolute mt-[18px] ml-[18px] z-50 border-2 border-background bg-yellow-500 rounded-full h-[10px] w-[10px]"></div>
+            <Avatar className="w-[25px] h-[25px]">
+              <AvatarImage src="https://github.com/jkbicierro.png" alt="John Bicierro" />
+              <AvatarFallback>JB</AvatarFallback>
+            </Avatar>
+            <span className="text-sm">John Bicierro</span>
+          </Link>
         </div>
 
         <div className="flex items-center gap-8">
