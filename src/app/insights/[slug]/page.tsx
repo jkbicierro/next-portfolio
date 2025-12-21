@@ -33,8 +33,8 @@ export default async function Page({ params }: PageProps) {
 
     return (
       <>
-        <section className="border py-[200px] flex justify-center">
-          <div className="w-[650px] border">
+        <section className="py-[200px] flex justify-center">
+          <div className="w-[1000px]">
             <MDXRenderer source={content} />
           </div>
         </section>
