@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, useScroll } from "motion/react";
 import { ModeToggle } from "../buttons/mode-toggle";
+import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 
 const navigation = [
   { name: "Home", href: "/", icon: <Home size={16} /> },
@@ -22,7 +23,7 @@ export function NavBar() {
     <>
       {/* style:lg */}
       <nav className="z-[999] backdrop-filter backdrop-blur-md px-[30px] fixed h-[60px] w-full flex items-center justify-between lg:justify-around">
-        <div>
+        <div className="flex gap-3">
           <Link href="/" className="flex items-center gap-3">
             <div className="absolute mt-[18px] ml-[18px] z-50 border-2 border-background bg-yellow-500 rounded-full h-[10px] w-[10px]"></div>
             <Avatar className="w-[25px] h-[25px]">
@@ -31,6 +32,15 @@ export function NavBar() {
             </Avatar>
             <span className="text-sm">John Bicierro</span>
           </Link>
+
+          <div className="flex items-center gap-2">
+            <Link href="https://www.linkedin.com/in/jkbicierro/" target="_blank">
+              <FaLinkedin size={18} />
+            </Link>
+            <Link href="https://github.com/jkbicierro" target="_blank">
+              <FaGithubSquare size={18} />
+            </Link>
+          </div>
         </div>
 
         <div className="flex items-center gap-8">
@@ -54,11 +64,12 @@ export function NavBar() {
             </ul>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             {/* <Button>
                 <Sparkles />
                 Unlock Resources
               </Button> */}
+
             <ModeToggle />
           </div>
         </div>
